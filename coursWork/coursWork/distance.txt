@@ -1,0 +1,11 @@
+Kazan1 Domodedovo 600
+Kazan1 Sheremetevo 650
+Kazan1 Vnykovo 700
+Kazan1 Pulcovo 1250
+Domodedovo Pulcovo 550
+Sheremetevo Pulcovo 600
+Vnykovo Pulcovo 500
+Pulcovo Sheremetevo 600
+Pulcovo Vnykovo 500
+Pulcovo Domodedovo 550
+Pulcovo Kazan1 1250

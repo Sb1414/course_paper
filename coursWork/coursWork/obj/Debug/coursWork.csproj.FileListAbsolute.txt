@@ -1,0 +1,12 @@
+C:\Users\Сабина\source\repos\coursWork\coursWork\bin\Debug\coursWork.exe.config
+C:\Users\Сабина\source\repos\coursWork\coursWork\bin\Debug\coursWork.exe
+C:\Users\Сабина\source\repos\coursWork\coursWork\bin\Debug\coursWork.pdb
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.csproj.AssemblyReference.cache
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.csproj.SuggestedBindingRedirects.cache
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.Form1.resources
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.Properties.Resources.resources
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.csproj.GenerateResource.cache
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.csproj.CoreCompileInputs.cache
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.exe
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.pdb
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.FormAdd.resources
