@@ -9,3 +9,6 @@ Pulcovo Sheremetevo 600
 Pulcovo Vnykovo 500
 Pulcovo Domodedovo 550
 Pulcovo Kazan1 1250
+Koltsovo Kazan1 717
+Hrabovo Kazan1 2100
+

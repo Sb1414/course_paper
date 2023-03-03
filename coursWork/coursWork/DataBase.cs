@@ -45,34 +45,54 @@ namespace coursWork
         public void addAllAirports()
         {
             string filePathAirport = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\airport.txt";
-            string name1 = "", fullName = "", countr = "";
 
-            foreach (string line in File.ReadLines(filePathAirport))
+            using (StreamReader sr = new StreamReader(filePathAirport))
             {
-                if (line != null){
-                    fullName = line.Split(' ')[0];
-                    name1 = line.Split(' ')[1];
-                    countr = line.Split(' ')[2];
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] words = line.Split(' ');
+
+                    if (words.Length == 3)
+                    {
+                        string fullName = words[0];
+                        string name1 = words[1];
+                        string countr = words[2];
+                        // обрабатываем полученные слова
+                        // Console.WriteLine("Первое слово: " + fullName);
+                        // Console.WriteLine("Второе слово: " + name1);
+                        // Console.WriteLine("Третье слово: " + countr);
+                        airports.Add(new Airport(fullName, name1, countr));
+                    }
                 }
-                airports.Add(new Airport(fullName, name1, countr));
             }
+
         }
 
         public void addAllDistances()
         {
             string filePathAirport = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\distance.txt";
-            string name1 = "", name2 = "";
-            double dist = 0;
-
-            foreach (string line in File.ReadLines(filePathAirport))
+            using (StreamReader sr = new StreamReader(filePathAirport))
             {
-                if (line != null)
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
                 {
-                    name1 = line.Split(' ')[0];
-                    name2 = line.Split(' ')[1];
-                    dist = Convert.ToDouble(line.Split(' ')[2]);
+                    string[] words = line.Split(' ');
+
+                    if (words.Length == 3)
+                    {
+                        string name1 = words[0];
+                        string name2 = words[1];
+                        string dist = words[2];
+                        // обрабатываем полученные слова
+                        // Console.WriteLine("Первое слово: " + name1);
+                        // Console.WriteLine("Второе слово: " + name2);
+                        // Console.WriteLine("Третье слово: " + dist);
+                        distances.Add(new Distance(name1, name2, Convert.ToDouble(dist)));
+                    }
                 }
-                distances.Add(new Distance(name1, name2, dist));
             }
         }
 
@@ -89,7 +109,21 @@ namespace coursWork
             }
             return false;
         }
-
+        /*
+        public string retFullName(string name)
+        {
+            addAllAirports();
+            addAllDistances();
+            for (int i = 0; i < airports.Count; i++)
+            {
+                if (airports[i].GetName() == name)
+                {
+                    return airports[i].GetFullName();
+                }
+            }
+            return false;
+        }
+        */
         public bool search(string name)
         {
             bool f = false;

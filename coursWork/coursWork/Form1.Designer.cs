@@ -36,6 +36,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelFindInfo = new System.Windows.Forms.Label();
             this.panelSearch = new System.Windows.Forms.Panel();
+            this.buttonInverse = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.textBoxName2 = new System.Windows.Forms.TextBox();
             this.textBoxName1 = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@
             this.panelUp = new System.Windows.Forms.Panel();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.buttonInverse = new System.Windows.Forms.Button();
             this.panelBack.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -129,6 +129,22 @@
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Size = new System.Drawing.Size(864, 78);
             this.panelSearch.TabIndex = 2;
+            // 
+            // buttonInverse
+            // 
+            this.buttonInverse.BackColor = System.Drawing.Color.Transparent;
+            this.buttonInverse.BackgroundImage = global::coursWork.Properties.Resources.icons8_resize_horizontal_25;
+            this.buttonInverse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonInverse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonInverse.FlatAppearance.BorderSize = 0;
+            this.buttonInverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonInverse.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonInverse.Location = new System.Drawing.Point(304, 24);
+            this.buttonInverse.Name = "buttonInverse";
+            this.buttonInverse.Size = new System.Drawing.Size(68, 31);
+            this.buttonInverse.TabIndex = 2;
+            this.buttonInverse.UseVisualStyleBackColor = false;
+            this.buttonInverse.Click += new System.EventHandler(this.buttonInverse_Click);
             // 
             // buttonSearch
             // 
@@ -220,22 +236,6 @@
             this.buttonClose.Text = "x";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // buttonInverse
-            // 
-            this.buttonInverse.BackColor = System.Drawing.Color.Transparent;
-            this.buttonInverse.BackgroundImage = global::coursWork.Properties.Resources.icons8_resize_horizontal_25;
-            this.buttonInverse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonInverse.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonInverse.FlatAppearance.BorderSize = 0;
-            this.buttonInverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonInverse.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInverse.Location = new System.Drawing.Point(304, 24);
-            this.buttonInverse.Name = "buttonInverse";
-            this.buttonInverse.Size = new System.Drawing.Size(68, 31);
-            this.buttonInverse.TabIndex = 2;
-            this.buttonInverse.UseVisualStyleBackColor = false;
-            this.buttonInverse.Click += new System.EventHandler(this.buttonInverse_Click);
             // 
             // Form1
             // 

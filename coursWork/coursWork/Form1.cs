@@ -93,11 +93,9 @@ namespace coursWork
 
             string[] fileLines = File.ReadAllLines(filePathAirport);
 
-            // Read the file and find all lines that contain the search string
             var filteredLines = File.ReadLines(filePathAirport).Where(line => 
             line.Contains(searchString1) || line.Contains(searchString2));
 
-            // Output the matching lines
             foreach (var line in filteredLines)
             {
                 if (line != null)
@@ -118,46 +116,72 @@ namespace coursWork
             {
                 if (textBoxName1.Text != "" || textBoxName1.Text != "Country of departure" 
                     || textBoxName2.Text != "" || textBoxName2.Text != "Country of arrival")
-                {                    
+                {
+                    dataGridView1.Rows.Clear();
                     if (dataBase.search(textBoxName1.Text) && dataBase.search(textBoxName2.Text))
                     {
                         airports.Clear();
                         distances.Clear();
-                        dataGridView1.Rows.Clear();
                         labelFindInfo.Text = "information found";
+
+                        string fullName1 = "", fullName2 = "", dist = "";
 
                         metod(textBoxName1.Text, textBoxName2.Text);
                         // labelFindInfo.Text = airports.Count().ToString();
                         string[] fileLines = File.ReadAllLines(filePathDistance);
-                        string fullName1 = "", fullName2 = "";
-                        double dist = 0;
                         for (int i = 0; i < airports.Count(); i++)
                         {
-                            var filteredLines = File.ReadLines(filePathDistance).Where(line => 
+                            var filteredLines = File.ReadLines(filePathDistance).Where(line =>
                             line.Contains(airports[i].GetFullName()));
-                            foreach (var line in filteredLines)
+
+
+                            if (File.Exists(filePathDistance))
                             {
-                                if (line != null)
+                                using (StreamReader reader = File.OpenText(filePathDistance))
                                 {
-                                    fullName1 = line.Split(' ')[0];
-                                    fullName2 = line.Split(' ')[1];
-                                    dist = Convert.ToDouble(line.Split(' ')[2]);
+                                    while (!reader.EndOfStream)
+                                    {
+                                        string line = reader.ReadLine();
+                                        if (line.Contains(airports[i].GetFullName()))
+                                        {
+                                            string[] words = line.Split(' ');
+                                            if (words.Length >= 3)
+                                            {
+                                                fullName1 = words[0]; // первое слово в строке
+                                                fullName2 = words[1]; // второе слово в строке
+                                                dist = words[2]; // третье слово в строке
+                                                if ((dataBase.AirportIn(fullName1, textBoxName1.Text) && dataBase.AirportIn(fullName2, textBoxName2.Text))
+                                                || (dataBase.AirportIn(fullName2, textBoxName1.Text) && dataBase.AirportIn(fullName1, textBoxName2.Text))
+                                                )
+                                                {
+
+                                                    Console.WriteLine("В дистанции: " + fullName1 + fullName2 + dist);
+                                                    // MessageBox.Show(fullName1, fullName2);
+                                                    distances.Add(new Distance(fullName1, fullName2, Convert.ToDouble(dist)));
+                                                    distances.Add(new Distance(fullName2, fullName1, Convert.ToDouble(dist)));
+                                                }
+                                            }
+                                        }
+                                    }
+
                                 }
-                                if (dataBase.AirportIn(fullName1, textBoxName1.Text) && 
-                                    dataBase.AirportIn(fullName2, textBoxName2.Text))
-                                    distances.Add(new Distance(fullName1, fullName2, dist));
                             }
                         }
-                        dataGridView1.RowCount = airports.Count();
-                        for (int i = 0; i < airports.Count(); i++)
-                        {
-                            dataGridView1[0, i].Value = distances[i].GetName1();
-                            dataGridView1[1, i].Value = distances[i].GetName2();
-                            dataGridView1[2, i].Value = distances[i].GetDistance();
-                        }
+
                         // labelFindInfo.Text = distances.Count().ToString();
                         // dataGridView1[0, 0].Value;
-
+                        int j = 0;
+                        dataGridView1.RowCount = distances.Count() / 4;
+                        for (int i = 0; i < distances.Count() / 2; i++)
+                        {
+                            if (dataBase.AirportIn(distances[i].GetName1(), textBoxName1.Text))
+                            {
+                                dataGridView1[0, j].Value = distances[i].GetName1();
+                                dataGridView1[1, j].Value = distances[i].GetName2();
+                                dataGridView1[2, j].Value = distances[i].GetDistance();
+                                j++;
+                            }
+                        }
                     } 
                     else
                     {
@@ -189,6 +213,20 @@ namespace coursWork
                 textBoxName1.Text = textBoxName2.Text;
                 textBoxName2.Text = tmp;
             }
+            if (dataGridView1.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    var column1 = row.Cells[0].Value;
+                    var column2 = row.Cells[1].Value;
+
+                    var temp = column1;
+
+                    row.Cells[0].Value = column2;
+                    row.Cells[1].Value = temp;
+                }
+            }
         }
+
     }
 }

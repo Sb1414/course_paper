@@ -3,3 +3,5 @@ Domodedovo MSK Moscow
 Sheremetevo MSK Moscow
 Vnykovo MSK Moscow
 Pulcovo SPB Sankt-Peterburg
+Koltsovo SVX Ekaterinburg
+Hrabovo KGD Kaliningrad

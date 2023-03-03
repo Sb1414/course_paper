@@ -149,7 +149,7 @@ namespace coursWork
                                 
                                 dataBase.AddAirport(textBoxName1.Text, textBoxShort1.Text, textBoxCountry1.Text);
                                 dataBase.AddAirport(textBoxName2.Text, textBoxShort2.Text, textBoxCountry2.Text);
-                                dataBase.AddDistance(textBoxShort1.Text, textBoxShort2.Text, Convert.ToDouble(textBoxDistance.Text));
+                                dataBase.AddDistance(textBoxName1.Text, textBoxName2.Text, Convert.ToDouble(textBoxDistance.Text));
                                 labelInfo.Text = "Данные успешно внесены";
 
                             }
