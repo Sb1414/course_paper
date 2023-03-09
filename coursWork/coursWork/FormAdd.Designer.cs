@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdd));
             this.panelBack = new System.Windows.Forms.Panel();
             this.buttonDel = new System.Windows.Forms.Button();
             this.textBoxCountry2 = new System.Windows.Forms.TextBox();
@@ -225,6 +226,7 @@
             this.ClientSize = new System.Drawing.Size(873, 526);
             this.Controls.Add(this.panelBack);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddcs";
