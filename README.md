@@ -1,7 +1,7 @@
 # course_paper
 > Приложение написано на C#, используется фреймфорк .NET Windows Forms App
 
-## Оглавление
+## Table of contents
 
 1. [Main Form](#main-form)
 2. [Information output form](#information-output-form)
