@@ -37,8 +37,8 @@ namespace coursWork
         public Form1()
         {
             InitializeComponent();
-            textBoxName1.Text = "Country of departure";
-            textBoxName2.Text = "Country of arrival";
+            textBoxName1.Text = "City of departure";
+            textBoxName2.Text = "City of arrival";
             textBoxName1.ForeColor = Color.Gray;
             textBoxName2.ForeColor = Color.Gray;
         }
@@ -65,7 +65,7 @@ namespace coursWork
 
         private void toolStripTextBox1_Enter(object sender, EventArgs e)
         {
-            if (textBoxName1.Text == "Country of departure")
+            if (textBoxName1.Text == "City of departure")
             {
                 textBoxName1.Text = "";
                 textBoxName1.ForeColor = Color.Black;
@@ -76,14 +76,14 @@ namespace coursWork
         {
             if (textBoxName1.Text == "")
             {
-                textBoxName1.Text = "Country of departure";
+                textBoxName1.Text = "City of departure";
                 textBoxName1.ForeColor = Color.Gray;
             }
         }
 
         private void toolStripTextBox2_Enter(object sender, EventArgs e)
         {
-            if (textBoxName2.Text == "Country of arrival")
+            if (textBoxName2.Text == "City of arrival")
             {
                 textBoxName2.Text = "";
                 textBoxName2.ForeColor = Color.Black;
@@ -94,7 +94,7 @@ namespace coursWork
         {
             if (textBoxName2.Text == "")
             {
-                textBoxName2.Text = "Country of arrival";
+                textBoxName2.Text = "City of arrival";
                 textBoxName2.ForeColor = Color.Gray;
             }
         }
@@ -126,8 +126,8 @@ namespace coursWork
         {
             try
             {
-                if (textBoxName1.Text != "" || textBoxName1.Text != "Country of departure" 
-                    || textBoxName2.Text != "" || textBoxName2.Text != "Country of arrival")
+                if (textBoxName1.Text != "" || textBoxName1.Text != "City of departure" 
+                    || textBoxName2.Text != "" || textBoxName2.Text != "City of arrival")
                 {
                     dataGridView1.Rows.Clear();
                     if (dataBase.search(textBoxName1.Text) && dataBase.search(textBoxName2.Text))
@@ -223,8 +223,8 @@ namespace coursWork
 
         private void buttonInverse_Click(object sender, EventArgs e)
         {
-            if ((textBoxName1.Text != "" && textBoxName1.Text != "Country of departure") &&
-                     (textBoxName2.Text != "" && textBoxName2.Text != "Country of arrival"))
+            if ((textBoxName1.Text != "" && textBoxName1.Text != "City of departure") &&
+                     (textBoxName2.Text != "" && textBoxName2.Text != "City of arrival"))
             {
                 string tmp = textBoxName1.Text;
                 textBoxName1.Text = textBoxName2.Text;
