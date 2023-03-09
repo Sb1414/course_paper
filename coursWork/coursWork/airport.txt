@@ -5,3 +5,7 @@ Vnykovo MSK Moscow
 Pulcovo SPB Sankt-Peterburg
 Koltsovo SVX Ekaterinburg
 Hrabovo KGD Kaliningrad
+Pashkovsky KRR Krasnodar
+Domodedovo MSK Moscow
+Hrabovo KGD Kaliningrad
+Pulcovo SPB Sankt-Peterburg

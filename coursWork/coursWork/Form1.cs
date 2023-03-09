@@ -19,9 +19,20 @@ namespace coursWork
         
         FormAdd formAdd;
         DataBase dataBase = new DataBase();
+        public static string fullPath()
+        {
+            // нахожу относительный путь
+            string fullPath = Directory.GetCurrentDirectory();
+            Console.WriteLine(fullPath);
 
-        string filePathAirport = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\airport.txt";
-        string filePathDistance = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\distance.txt";
+            if (fullPath.Length > 10)
+                fullPath = fullPath.Remove(fullPath.Length - 10);
+            Console.WriteLine(fullPath);
+            return fullPath;
+        }
+
+        string filePathAirport = fullPath() + "\\airport.txt";
+        string filePathDistance = fullPath() + "\\distance.txt";
         public Form1()
         {
             InitializeComponent();

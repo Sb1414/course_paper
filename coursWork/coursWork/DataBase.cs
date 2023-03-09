@@ -13,19 +13,45 @@ namespace coursWork
     {
         List<Airport> airports = new List<Airport>();
         List<Distance> distances = new List<Distance>();
+        
+        public string fullPath()
+        {
+            // нахожу относительный путь
+            string fullPath = Directory.GetCurrentDirectory();
+            Console.WriteLine(fullPath);
+
+            if (fullPath.Length > 10)
+                fullPath = fullPath.Remove(fullPath.Length - 10);
+            Console.WriteLine(fullPath);
+            return fullPath;
+        }
 
         public void AddAirport(string fullName, string name, string country)
         {
+            addAllAirports();
             Airport airport = new Airport(fullName, name, country);
             airports.Add(airport);
 
-            string fileName = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\airport.txt";
+            
 
-            // записываем данные в файл
+
+            string fileName = fullPath() + "\\airport.txt";
+            bool c = true;
+            for (int i = 0; i < airports.Count; i++)
+            {
+                if (airports[i].GetFullName() == fullName && airports[i].GetName() == name && airports[i].GetCountry() == country)
+                    c = false;
+            }
+
             using (StreamWriter sw = File.AppendText(fileName))
             {
-                sw.WriteLine(fullName + " " + name + " " + country);
+                if (c)
+                {
+                    Console.WriteLine("записалось: " + fullName + " " + name + " " + country);
+                    sw.WriteLine(fullName + " " + name + " " + country);
+                }
             }
+
         }
 
         public void AddDistance(string name1, string name2, double interval)
@@ -33,18 +59,28 @@ namespace coursWork
             Distance distance = new Distance(name1, name2, interval);
             distances.Add(distance);
 
-            string fileName = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\distance.txt";
+            string fileName = fullPath() + "\\distance.txt";
 
+            bool c = true;
+            for (int i = 0; i < distances.Count; i++)
+            {
+                if (distances[i].GetName1() == name1 && distances[i].GetName2() == name2 && distances[i].GetDistance() == interval)
+                    c = false;
+            }
             // записываем данные в файл
             using (StreamWriter sw = File.AppendText(fileName))
             {
-                sw.WriteLine(name1 + " " + name2 + " " + interval + '\n');
+                if (c)
+                {
+                    sw.WriteLine(name1 + " " + name2 + " " + interval + '\n');
+                    Console.WriteLine("записалось: " + name1 + " " + name2 + " " + interval);
+                }
             }
         }
 
         public void addAllAirports()
         {
-            string filePathAirport = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\airport.txt";
+            string filePathAirport = fullPath() + "\\airport.txt";
 
             using (StreamReader sr = new StreamReader(filePathAirport))
             {
@@ -72,7 +108,7 @@ namespace coursWork
 
         public void addAllDistances()
         {
-            string filePathAirport = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\distance.txt";
+            string filePathAirport = fullPath() + "\\distance.txt";
             using (StreamReader sr = new StreamReader(filePathAirport))
             {
                 string line;
@@ -127,7 +163,7 @@ namespace coursWork
         public bool search(string name)
         {
             bool f = false;
-            string filePath = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\airport.txt";
+            string filePath = fullPath() + "\\airport.txt";
 
             string[] fileLines = File.ReadAllLines(filePath);
 
