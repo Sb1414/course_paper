@@ -5,3 +5,6 @@ Vnykovo MSK Moscow
 Pulcovo SPB Sankt-Peterburg
 Hrabovo KGD Kaliningrad
 Koltsovo SVX Ekaterinburg
+
+airport name short name city
+airport name short name city

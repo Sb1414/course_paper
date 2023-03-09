@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelBack = new System.Windows.Forms.Panel();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.textBoxCountry2 = new System.Windows.Forms.TextBox();
             this.textBoxCountry1 = new System.Windows.Forms.TextBox();
             this.labelInfo = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelUp = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.buttonDel = new System.Windows.Forms.Button();
             this.panelBack.SuspendLayout();
             this.panelUp.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +49,8 @@
             // panelBack
             // 
             this.panelBack.BackColor = System.Drawing.Color.PowderBlue;
+            this.panelBack.BackgroundImage = global::coursWork.Properties.Resources.formAdd;
+            this.panelBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelBack.Controls.Add(this.buttonDel);
             this.panelBack.Controls.Add(this.textBoxCountry2);
             this.panelBack.Controls.Add(this.textBoxCountry1);
@@ -66,6 +68,22 @@
             this.panelBack.Name = "panelBack";
             this.panelBack.Size = new System.Drawing.Size(873, 526);
             this.panelBack.TabIndex = 1;
+            // 
+            // buttonDel
+            // 
+            this.buttonDel.BackColor = System.Drawing.Color.DarkCyan;
+            this.buttonDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonDel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonDel.FlatAppearance.BorderSize = 0;
+            this.buttonDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDel.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDel.Location = new System.Drawing.Point(705, 306);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(134, 36);
+            this.buttonDel.TabIndex = 10;
+            this.buttonDel.Text = "Delete all";
+            this.buttonDel.UseVisualStyleBackColor = false;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // textBoxCountry2
             // 
@@ -164,6 +182,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(234, 33);
             this.label1.Name = "label1";
@@ -173,12 +192,15 @@
             // 
             // panelUp
             // 
+            this.panelUp.BackColor = System.Drawing.Color.Transparent;
             this.panelUp.Controls.Add(this.buttonClose);
             this.panelUp.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUp.Location = new System.Drawing.Point(0, 0);
             this.panelUp.Name = "panelUp";
             this.panelUp.Size = new System.Drawing.Size(873, 30);
             this.panelUp.TabIndex = 0;
+            this.panelUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelUp_MouseDown);
+            this.panelUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelUp_MouseMove);
             // 
             // buttonClose
             // 
@@ -196,22 +218,6 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
-            // buttonDel
-            // 
-            this.buttonDel.BackColor = System.Drawing.Color.DarkCyan;
-            this.buttonDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonDel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonDel.FlatAppearance.BorderSize = 0;
-            this.buttonDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonDel.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDel.Location = new System.Drawing.Point(705, 306);
-            this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(134, 36);
-            this.buttonDel.TabIndex = 10;
-            this.buttonDel.Text = "Delete all";
-            this.buttonDel.UseVisualStyleBackColor = false;
-            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
-            // 
             // FormAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -220,6 +226,7 @@
             this.Controls.Add(this.panelBack);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormAdd";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAddcs";
             this.panelBack.ResumeLayout(false);
             this.panelBack.PerformLayout();

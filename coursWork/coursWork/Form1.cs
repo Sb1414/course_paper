@@ -18,6 +18,7 @@ namespace coursWork
         List<Distance> distances = new List<Distance>();
         
         FormAdd formAdd;
+        FormShow formShow;
         DataBase dataBase = new DataBase();
         public static string fullPath()
         {
@@ -139,43 +140,43 @@ namespace coursWork
 
                         metod(textBoxName1.Text, textBoxName2.Text);
                         // labelFindInfo.Text = airports.Count().ToString();
-                        string[] fileLines = File.ReadAllLines(filePathDistance);
                         for (int i = 0; i < airports.Count(); i++)
                         {
-                            var filteredLines = File.ReadLines(filePathDistance).Where(line =>
-                            line.Contains(airports[i].GetFullName()));
-
+                            string fullName = airports[i].GetFullName();
+                            bool found = false;
 
                             if (File.Exists(filePathDistance))
                             {
-                                using (StreamReader reader = File.OpenText(filePathDistance))
+                                using (StreamReader reader = new StreamReader(filePathDistance))
                                 {
-                                    while (!reader.EndOfStream)
+                                    string line;
+                                    while ((line = reader.ReadLine()) != null)
                                     {
-                                        string line = reader.ReadLine();
-                                        if (line.Contains(airports[i].GetFullName()))
+                                        if (line.Contains(fullName))
                                         {
                                             string[] words = line.Split(' ');
                                             if (words.Length >= 3)
                                             {
-                                                fullName1 = words[0]; // первое слово в строке
-                                                fullName2 = words[1]; // второе слово в строке
-                                                dist = words[2]; // третье слово в строке
+                                                fullName1 = words[0];
+                                                fullName2 = words[1];
+                                                dist = words[2];
                                                 if ((dataBase.AirportIn(fullName1, textBoxName1.Text) && dataBase.AirportIn(fullName2, textBoxName2.Text))
-                                                || (dataBase.AirportIn(fullName2, textBoxName1.Text) && dataBase.AirportIn(fullName1, textBoxName2.Text))
-                                                )
+                                                || (dataBase.AirportIn(fullName2, textBoxName1.Text) && dataBase.AirportIn(fullName1, textBoxName2.Text)))
                                                 {
-
                                                     Console.WriteLine("В дистанции: " + fullName1 + fullName2 + dist);
-                                                    // MessageBox.Show(fullName1, fullName2);
                                                     distances.Add(new Distance(fullName1, fullName2, Convert.ToDouble(dist)));
                                                     distances.Add(new Distance(fullName2, fullName1, Convert.ToDouble(dist)));
                                                 }
                                             }
+                                            found = true;
                                         }
                                     }
-
                                 }
+                            }
+
+                            if (!found)
+                            {
+                                Console.WriteLine($"Аэропорт {fullName} не найден в файле");
                             }
                         }
 
@@ -244,5 +245,9 @@ namespace coursWork
             }
         }
 
+        private void buttonShow_Click(object sender, EventArgs e)
+        {
+            new FormShow(this).Show();
+        }
     }
 }

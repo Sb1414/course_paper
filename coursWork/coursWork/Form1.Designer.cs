@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelBack = new System.Windows.Forms.Panel();
+            this.buttonShow = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +55,9 @@
             // panelBack
             // 
             this.panelBack.BackColor = System.Drawing.Color.PowderBlue;
+            this.panelBack.BackgroundImage = global::coursWork.Properties.Resources.form1back;
+            this.panelBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelBack.Controls.Add(this.buttonShow);
             this.panelBack.Controls.Add(this.panel1);
             this.panelBack.Controls.Add(this.panelSearch);
             this.panelBack.Controls.Add(this.label1);
@@ -63,6 +67,22 @@
             this.panelBack.Name = "panelBack";
             this.panelBack.Size = new System.Drawing.Size(1056, 638);
             this.panelBack.TabIndex = 0;
+            // 
+            // buttonShow
+            // 
+            this.buttonShow.BackColor = System.Drawing.Color.DarkCyan;
+            this.buttonShow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonShow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonShow.FlatAppearance.BorderSize = 0;
+            this.buttonShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShow.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonShow.Location = new System.Drawing.Point(959, 36);
+            this.buttonShow.Name = "buttonShow";
+            this.buttonShow.Size = new System.Drawing.Size(97, 30);
+            this.buttonShow.TabIndex = 3;
+            this.buttonShow.Text = "show";
+            this.buttonShow.UseVisualStyleBackColor = false;
+            this.buttonShow.Click += new System.EventHandler(this.buttonShow_Click);
             // 
             // panel1
             // 
@@ -121,6 +141,7 @@
             // 
             // panelSearch
             // 
+            this.panelSearch.BackColor = System.Drawing.Color.Transparent;
             this.panelSearch.Controls.Add(this.buttonInverse);
             this.panelSearch.Controls.Add(this.buttonSearch);
             this.panelSearch.Controls.Add(this.textBoxName2);
@@ -157,7 +178,7 @@
             this.buttonSearch.Location = new System.Drawing.Point(683, 24);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(134, 31);
-            this.buttonSearch.TabIndex = 1;
+            this.buttonSearch.TabIndex = 2;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = false;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
@@ -185,6 +206,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(351, 33);
             this.label1.Name = "label1";
@@ -194,6 +216,7 @@
             // 
             // panelUp
             // 
+            this.panelUp.BackColor = System.Drawing.Color.Transparent;
             this.panelUp.Controls.Add(this.buttonAdd);
             this.panelUp.Controls.Add(this.buttonClose);
             this.panelUp.Dock = System.Windows.Forms.DockStyle.Top;
@@ -276,6 +299,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonInverse;
+        private System.Windows.Forms.Button buttonShow;
     }
 }
 

@@ -10,3 +10,4 @@ C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.cspro
 C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.exe
 C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.pdb
 C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.FormAdd.resources
+C:\Users\Сабина\source\repos\coursWork\coursWork\obj\Debug\coursWork.FormShow.resources

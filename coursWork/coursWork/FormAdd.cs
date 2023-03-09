@@ -18,23 +18,23 @@ namespace coursWork
         {
             form1 = owner;
             InitializeComponent();
-            textBoxName1.Text = "Country of departure";
-            textBoxName2.Text = "Country of arrival";
+            textBoxName1.Text = "airport name";
+            textBoxName2.Text = "airport name";
             textBoxName1.ForeColor = Color.Gray;
             textBoxName2.ForeColor = Color.Gray;
 
-            textBoxShort1.Text = "Short name";
-            textBoxShort2.Text = "Short name";
+            textBoxShort1.Text = "short name";
+            textBoxShort2.Text = "short name";
             textBoxShort1.ForeColor = Color.Gray;
             textBoxShort2.ForeColor = Color.Gray;
 
-            textBoxDistance.Text = "Distance";
+            textBoxDistance.Text = "distance";
             textBoxDistance.ForeColor = Color.Gray;
 
-            textBoxCountry1.Text = "Country";
+            textBoxCountry1.Text = "city";
             textBoxCountry1.ForeColor = Color.Gray;
 
-            textBoxCountry2.Text = "Country";
+            textBoxCountry2.Text = "city";
             textBoxCountry2.ForeColor = Color.Gray;
         }
 
@@ -43,9 +43,24 @@ namespace coursWork
             this.Close();
         }
 
+        Point lastPoint;
+        private void panelUp_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void panelUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
         private void textBoxName1_Enter(object sender, EventArgs e)
         {
-            if (textBoxName1.Text == "Country of departure")
+            if (textBoxName1.Text == "airport name")
             {
                 textBoxName1.Text = "";
                 textBoxName1.ForeColor = Color.Black;
@@ -56,14 +71,14 @@ namespace coursWork
         {
             if (textBoxName1.Text == "")
             {
-                textBoxName1.Text = "Country of departure";
+                textBoxName1.Text = "airport name";
                 textBoxName1.ForeColor = Color.Gray;
             }
         }
 
         private void textBoxName2_Enter(object sender, EventArgs e)
         {
-            if (textBoxName2.Text == "Country of arrival")
+            if (textBoxName2.Text == "airport name")
             {
                 textBoxName2.Text = "";
                 textBoxName2.ForeColor = Color.Black;
@@ -74,14 +89,14 @@ namespace coursWork
         {
             if (textBoxName2.Text == "")
             {
-                textBoxName2.Text = "Country of arrival";
+                textBoxName2.Text = "airport name";
                 textBoxName2.ForeColor = Color.Gray;
             }
         }
 
         private void textBoxShort1_Enter(object sender, EventArgs e)
         {
-            if (textBoxShort1.Text == "Short name")
+            if (textBoxShort1.Text == "short name")
             {
                 textBoxShort1.Text = "";
                 textBoxShort1.ForeColor = Color.Black;
@@ -92,14 +107,14 @@ namespace coursWork
         {
             if (textBoxShort1.Text == "")
             {
-                textBoxShort1.Text = "Short name";
+                textBoxShort1.Text = "short name";
                 textBoxShort1.ForeColor = Color.Gray;
             }
         }
 
         private void textBoxShort2_Enter(object sender, EventArgs e)
         {
-            if (textBoxShort2.Text == "Short name")
+            if (textBoxShort2.Text == "short name")
             {
                 textBoxShort2.Text = "";
                 textBoxShort2.ForeColor = Color.Black;
@@ -110,14 +125,14 @@ namespace coursWork
         {
             if (textBoxShort2.Text == "")
             {
-                textBoxShort2.Text = "Short name";
+                textBoxShort2.Text = "short name";
                 textBoxShort2.ForeColor = Color.Gray;
             }
         }
 
         private void textBoxDistance_Enter(object sender, EventArgs e)
         {
-            if (textBoxDistance.Text == "Distance")
+            if (textBoxDistance.Text == "distance")
             {
                 textBoxDistance.Text = "";
                 textBoxDistance.ForeColor = Color.Black;
@@ -128,7 +143,7 @@ namespace coursWork
         {
             if (textBoxDistance.Text == "")
             {
-                textBoxDistance.Text = "Distance";
+                textBoxDistance.Text = "distance";
                 textBoxDistance.ForeColor = Color.Gray;
             }
         }
@@ -137,13 +152,13 @@ namespace coursWork
         {
             try
             {
-                if (textBoxName1.Text != "" || textBoxName1.Text != "Country of departure" || textBoxName2.Text != "" || textBoxName2.Text != "Country of arrival")
+                if (textBoxName1.Text != "" || textBoxName1.Text != "airport name" || textBoxName2.Text != "" || textBoxName2.Text != "airport name")
                 {
-                    if (textBoxShort1.Text != "" || textBoxShort1.Text != "Short name" || textBoxShort2.Text != "" || textBoxShort2.Text != "Short name")
+                    if (textBoxShort1.Text != "" || textBoxShort1.Text != "short name" || textBoxShort2.Text != "" || textBoxShort2.Text != "short name")
                     {
-                        if (textBoxCountry1.Text != "" || textBoxCountry1.Text != "Country" || textBoxCountry2.Text != "" || textBoxCountry2.Text != "Country")
+                        if (textBoxCountry1.Text != "" || textBoxCountry1.Text != "city" || textBoxCountry2.Text != "" || textBoxCountry2.Text != "city")
                         {
-                            if (textBoxDistance.Text != "" || textBoxDistance.Text != "Distance")
+                            if (textBoxDistance.Text != "" || textBoxDistance.Text != "distance")
                             {
                                 DataBase dataBase = new DataBase();
                                 
@@ -160,7 +175,7 @@ namespace coursWork
                         }
                         else
                         {
-                            throw new Exception("not all fields are filled in (no country)");
+                            throw new Exception("not all fields are filled in (no city)");
                         }
 
                     }
@@ -182,7 +197,7 @@ namespace coursWork
 
         private void textBoxCountry1_Enter(object sender, EventArgs e)
         {
-            if (textBoxCountry1.Text == "Country")
+            if (textBoxCountry1.Text == "city")
             {
                 textBoxCountry1.Text = "";
                 textBoxCountry1.ForeColor = Color.Black;
@@ -193,14 +208,14 @@ namespace coursWork
         {
             if (textBoxCountry1.Text == "")
             {
-                textBoxCountry1.Text = "Country";
+                textBoxCountry1.Text = "city";
                 textBoxCountry1.ForeColor = Color.Gray;
             }
         }
 
         private void textBoxCountry2_Enter(object sender, EventArgs e)
         {
-            if (textBoxCountry2.Text == "Country")
+            if (textBoxCountry2.Text == "city")
             {
                 textBoxCountry2.Text = "";
                 textBoxCountry2.ForeColor = Color.Black;
@@ -211,16 +226,20 @@ namespace coursWork
         {
             if (textBoxCountry2.Text == "")
             {
-                textBoxCountry2.Text = "Country";
+                textBoxCountry2.Text = "city";
                 textBoxCountry2.ForeColor = Color.Gray;
             }
         }
 
         private void buttonDel_Click(object sender, EventArgs e)
         {
-            string filePathAirport = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\airport.txt";
+            string fullPath = Directory.GetCurrentDirectory();
+            if (fullPath.Length > 10)
+                fullPath = fullPath.Remove(fullPath.Length - 10);
+
+            string filePathAirport = fullPath + "\\airport.txt";
             File.WriteAllText(filePathAirport, string.Empty);
-            string filePathDistance = "C:\\Users\\Сабина\\source\\repos\\coursWork\\coursWork\\distance.txt";
+            string filePathDistance = fullPath + "\\distance.txt";
             File.WriteAllText(filePathDistance, string.Empty);
         }
     }
