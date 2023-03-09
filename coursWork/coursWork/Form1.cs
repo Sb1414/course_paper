@@ -181,19 +181,24 @@ namespace coursWork
 
                         // labelFindInfo.Text = distances.Count().ToString();
                         // dataGridView1[0, 0].Value;
-                        int j = 0;
-                        dataGridView1.RowCount = distances.Count() / 4;
-                        for (int i = 0; i < distances.Count() / 2; i++)
+                        if (distances.Count > 0)
                         {
-                            if (dataBase.AirportIn(distances[i].GetName1(), textBoxName1.Text))
+                            int j = 0;
+                            dataGridView1.RowCount = distances.Count() / 4;
+                            for (int i = 0; i < distances.Count() / 2; i++)
                             {
-                                dataGridView1[0, j].Value = distances[i].GetName1();
-                                dataGridView1[1, j].Value = distances[i].GetName2();
-                                dataGridView1[2, j].Value = distances[i].GetDistance();
-                                j++;
+                                if (dataBase.AirportIn(distances[i].GetName1(), textBoxName1.Text))
+                                {
+                                    dataGridView1[0, j].Value = distances[i].GetName1();
+                                    dataGridView1[1, j].Value = distances[i].GetName2();
+                                    dataGridView1[2, j].Value = distances[i].GetDistance();
+                                    j++;
+                                }
                             }
-                        }
-                    } 
+                        } else
+                        {
+                            throw new Exception("route not found");
+                        }                    } 
                     else
                     {
                         throw new Exception("airport not found");

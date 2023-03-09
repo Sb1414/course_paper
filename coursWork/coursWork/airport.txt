@@ -3,9 +3,5 @@ Domodedovo MSK Moscow
 Sheremetevo MSK Moscow
 Vnykovo MSK Moscow
 Pulcovo SPB Sankt-Peterburg
+Hrabovo KGD Kaliningrad
 Koltsovo SVX Ekaterinburg
-Hrabovo KGD Kaliningrad
-Pashkovsky KRR Krasnodar
-Domodedovo MSK Moscow
-Hrabovo KGD Kaliningrad
-Pulcovo SPB Sankt-Peterburg

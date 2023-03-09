@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,11 +30,8 @@ namespace coursWork
         public void AddAirport(string fullName, string name, string country)
         {
             addAllAirports();
-            Airport airport = new Airport(fullName, name, country);
-            airports.Add(airport);
-
-            
-
+            // Airport airport = new Airport(fullName, name, country);
+            // airports.Add(airport);
 
             string fileName = fullPath() + "\\airport.txt";
             bool c = true;
@@ -56,8 +54,8 @@ namespace coursWork
 
         public void AddDistance(string name1, string name2, double interval)
         {
-            Distance distance = new Distance(name1, name2, interval);
-            distances.Add(distance);
+            // Distance distance = new Distance(name1, name2, interval);
+            // distances.Add(distance);
 
             string fileName = fullPath() + "\\distance.txt";
 
@@ -72,7 +70,7 @@ namespace coursWork
             {
                 if (c)
                 {
-                    sw.WriteLine(name1 + " " + name2 + " " + interval + '\n');
+                    sw.WriteLine(name1 + " " + name2 + " " + interval);
                     Console.WriteLine("записалось: " + name1 + " " + name2 + " " + interval);
                 }
             }
@@ -175,6 +173,24 @@ namespace coursWork
                 // Console.WriteLine(line);
             }
             return f;
+
+        }
+
+        public bool checkDistance(string name1, string name2)
+        {
+            addAllAirports();
+            addAllDistances();
+            for (int i = 0; i < distances.Count; i++)
+            {
+                Console.WriteLine( distances[i].GetName1() + " - " + distances[i].GetName2());
+                if (distances[i].GetName1() == name1 && distances[i].GetName2() == name2)
+                {
+                    Console.WriteLine("НАШЛОСЬ: ", distances[i].GetName1(), " - ", distances[i].GetName2());
+                    return true;
+                }
+                Console.WriteLine("НЕТ: ", distances[i].GetName1(), " - ", distances[i].GetName2());
+            }
+            return false;
         }
         /*
         public string GetNameAirport(string country)

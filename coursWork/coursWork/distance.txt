@@ -5,14 +5,8 @@ Kazan1 Pulcovo 1250
 Domodedovo Pulcovo 550
 Sheremetevo Pulcovo 600
 Vnykovo Pulcovo 500
-Pulcovo Sheremetevo 600
-Pulcovo Vnykovo 500
-Pulcovo Domodedovo 550
-Pulcovo Kazan1 1250
 Koltsovo Kazan1 717
 Hrabovo Kazan1 2100
-
 Pulcovo Hrabovo 961
 
-Pulcovo Hrabovo 961
-
+Pulcovo Koltsovo 2229
