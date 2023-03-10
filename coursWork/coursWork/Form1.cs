@@ -190,8 +190,8 @@ namespace coursWork
                             {
                                 if (dataBase.AirportIn(distances[i].GetName1(), textBoxName1.Text))
                                 {
-                                    dataGridView1[0, j].Value = distances[i].GetName1();
-                                    dataGridView1[1, j].Value = distances[i].GetName2();
+                                    dataGridView1[0, j].Value = distances[i].GetName1() + " ("+ dataBase.GetShortNameFromName(distances[i].GetName1()) + ")";
+                                    dataGridView1[1, j].Value = distances[i].GetName2() + " ("+ dataBase.GetShortNameFromName(distances[i].GetName2()) + ")";
                                     dataGridView1[2, j].Value = distances[i].GetDistance();
                                     j++;
                                 }

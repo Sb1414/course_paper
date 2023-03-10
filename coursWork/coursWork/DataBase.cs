@@ -192,6 +192,22 @@ namespace coursWork
             }
             return false;
         }
+
+        public string GetShortNameFromName(string name)
+        {
+            addAllAirports();
+            addAllDistances();
+            string res = "";
+            for (int i = 0; i < airports.Count; i++)
+            {
+                if (airports[i].GetFullName() == name)
+                {
+                    res = airports[i].GetName();
+                }
+
+            }
+            return res;
+        }
         /*
         public string GetNameAirport(string country)
         {

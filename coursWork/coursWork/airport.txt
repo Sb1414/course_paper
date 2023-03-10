@@ -1,10 +1,8 @@
 Kazan1 KZN Kazan
-Domodedovo MSK Moscow
-Sheremetevo MSK Moscow
-Vnykovo MSK Moscow
-Pulcovo SPB Sankt-Peterburg
+Domodedovo DME Moscow
+Sheremetevo SVO Moscow
+Vnykovo VKO Moscow
+Pulcovo LED Sankt-Peterburg
 Hrabovo KGD Kaliningrad
 Koltsovo SVX Ekaterinburg
-
-airport name short name city
-airport name short name city
+Sheikh SHX Shostka
