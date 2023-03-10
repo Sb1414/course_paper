@@ -88,6 +88,8 @@ namespace coursWork
                     j++;
                 }
             }
+            this.dataGridView1.Sort(this.dataGridView1.Columns[0], ListSortDirection.Ascending);
+
         }
 
         private void ButtonDel_Click(object sender, EventArgs e)
