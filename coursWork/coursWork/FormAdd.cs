@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection.Emit;
+using System.Xml.Linq;
 
 namespace coursWork
 {
@@ -233,14 +235,33 @@ namespace coursWork
 
         private void buttonDel_Click(object sender, EventArgs e)
         {
-            string fullPath = Directory.GetCurrentDirectory();
-            if (fullPath.Length > 10)
-                fullPath = fullPath.Remove(fullPath.Length - 10);
+            if (MessageBox.Show("Действительно хотите удалить все данные?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string fullPath = Directory.GetCurrentDirectory();
+                if (fullPath.Length > 10)
+                    fullPath = fullPath.Remove(fullPath.Length - 10);
 
-            string filePathAirport = fullPath + "\\airport.txt";
-            File.WriteAllText(filePathAirport, string.Empty);
-            string filePathDistance = fullPath + "\\distance.txt";
-            File.WriteAllText(filePathDistance, string.Empty);
+                string filePathAirport = fullPath + "\\airport.txt";
+                File.WriteAllText(filePathAirport, string.Empty);
+                string filePathDistance = fullPath + "\\distance.txt";
+                File.WriteAllText(filePathDistance, string.Empty);
+            }
+        }
+
+        private void showAlRoutes_Click(object sender, EventArgs e)
+        {
+            ShowRoutes showRoutes = new ShowRoutes();
+            showRoutes.Show();
+        }
+
+        private void showAlRoutes_MouseHover(object sender, EventArgs e)
+        {
+            showAlRoutes.ForeColor = Color.FromArgb(73, 158, 157);
+        }
+
+        private void showAlRoutes_MouseLeave(object sender, EventArgs e)
+        {
+            showAlRoutes.ForeColor = Color.FromArgb(17, 115, 114);
         }
     }
 }

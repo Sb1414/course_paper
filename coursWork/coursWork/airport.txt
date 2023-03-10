@@ -2,7 +2,7 @@ Kazan1 KZN Kazan
 Domodedovo DME Moscow
 Sheremetevo SVO Moscow
 Vnykovo VKO Moscow
-Pulcovo LED Sankt-Peterburg
-Hrabovo KGD Kaliningrad
+Pulcovo LED Saint-Petersburg
+Hrabrovo KGD Kaliningrad
 Koltsovo SVX Ekaterinburg
 Sheikh SHX Shostka

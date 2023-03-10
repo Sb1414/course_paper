@@ -6,9 +6,7 @@ Domodedovo Pulcovo 550
 Sheremetevo Pulcovo 600
 Vnykovo Pulcovo 500
 Koltsovo Kazan1 717
-Hrabovo Kazan1 2100
-Pulcovo Hrabovo 961
+Hrabrovo Kazan1 2100
+Pulcovo Hrabrovo 961
 Pulcovo Koltsovo 2229
 
-Sheikh Kazan1 2300
-Domodedovo Koltsovo 2000

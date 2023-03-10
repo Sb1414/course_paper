@@ -43,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelUp = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.showAlRoutes = new System.Windows.Forms.Label();
             this.panelBack.SuspendLayout();
             this.panelUp.SuspendLayout();
             this.SuspendLayout();
@@ -52,10 +53,11 @@
             this.panelBack.BackColor = System.Drawing.Color.PowderBlue;
             this.panelBack.BackgroundImage = global::coursWork.Properties.Resources.formAdd;
             this.panelBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelBack.Controls.Add(this.showAlRoutes);
+            this.panelBack.Controls.Add(this.labelInfo);
             this.panelBack.Controls.Add(this.buttonDel);
             this.panelBack.Controls.Add(this.textBoxCountry2);
             this.panelBack.Controls.Add(this.textBoxCountry1);
-            this.panelBack.Controls.Add(this.labelInfo);
             this.panelBack.Controls.Add(this.textBoxDistance);
             this.panelBack.Controls.Add(this.textBoxShort2);
             this.panelBack.Controls.Add(this.textBoxShort1);
@@ -109,7 +111,7 @@
             // labelInfo
             // 
             this.labelInfo.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelInfo.Location = new System.Drawing.Point(41, 370);
+            this.labelInfo.Location = new System.Drawing.Point(36, 370);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(798, 130);
             this.labelInfo.TabIndex = 7;
@@ -219,6 +221,22 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
+            // showAlRoutes
+            // 
+            this.showAlRoutes.BackColor = System.Drawing.Color.Transparent;
+            this.showAlRoutes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.showAlRoutes.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.showAlRoutes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(115)))), ((int)(((byte)(114)))));
+            this.showAlRoutes.Location = new System.Drawing.Point(615, 467);
+            this.showAlRoutes.Name = "showAlRoutes";
+            this.showAlRoutes.Size = new System.Drawing.Size(246, 33);
+            this.showAlRoutes.TabIndex = 1;
+            this.showAlRoutes.Text = "Output of all routes";
+            this.showAlRoutes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.showAlRoutes.Click += new System.EventHandler(this.showAlRoutes_Click);
+            this.showAlRoutes.MouseLeave += new System.EventHandler(this.showAlRoutes_MouseLeave);
+            this.showAlRoutes.MouseHover += new System.EventHandler(this.showAlRoutes_MouseHover);
+            // 
             // FormAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -252,5 +270,6 @@
         private System.Windows.Forms.TextBox textBoxCountry2;
         private System.Windows.Forms.TextBox textBoxCountry1;
         private System.Windows.Forms.Button buttonDel;
+        private System.Windows.Forms.Label showAlRoutes;
     }
 }
