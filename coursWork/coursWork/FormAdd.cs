@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Reflection.Emit;
 using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace coursWork
 {
@@ -150,6 +151,55 @@ namespace coursWork
             }
         }
 
+        private bool check()
+        {
+            bool f = false;
+            try
+            {
+                string reAir = @"^[A-ZА-Я][a-zа-яё0-1]+";
+                string reShort = @"^[A-ZА-Я]{3}";
+                string reCountry = @"^[A-ZА-Я][a-zа-яё]+";
+                if ((Regex.IsMatch(textBoxName1.Text, reAir)) && Regex.IsMatch(textBoxName2.Text, reAir))
+                {
+                    if ((Regex.IsMatch(textBoxShort1.Text, reShort)) && Regex.IsMatch(textBoxShort2.Text, reShort))
+                    {
+                        if ((Regex.IsMatch(textBoxCountry1.Text, reCountry)) && Regex.IsMatch(textBoxCountry2.Text, reCountry))
+                        {
+                            if (Regex.IsMatch(textBoxDistance.Text, @"^\d+(\,\d+)?$"))
+                            {
+                                f = true;
+                            }
+                            else
+                            {
+                                throw new Exception("The distance must be a number format, allowed with floating point, use \".\"\n" +
+                                                    "Дистанция должна быть формата число, допускается с плавающей точкой, использовать \".\"");
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("The name of the city must begin with a capital letter and contain Latin or Cyrillic characters\n" +
+                                                "Название города должно начинаться с заглавной буквы и содержать символы латиницы или кириллицы");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("The airport code must contain 3 capital letters\n" +
+                                            "Код аэропорта должен содержать 3 заглавные буквы");
+                    }
+                }
+                else
+                {
+                    throw new Exception("The name of the airport must begin with a capital letter\n" +
+                                        "Название аэропорта должно начинаться с заглавной буквы");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return f;
+        }
+
         private void buttonGo_Click(object sender, EventArgs e)
         {
             try
@@ -162,13 +212,15 @@ namespace coursWork
                         {
                             if (textBoxDistance.Text != "" || textBoxDistance.Text != "distance")
                             {
-                                DataBase dataBase = new DataBase();
-                                
-                                dataBase.AddAirport(textBoxName1.Text, textBoxShort1.Text, textBoxCountry1.Text);
-                                dataBase.AddAirport(textBoxName2.Text, textBoxShort2.Text, textBoxCountry2.Text);
-                                dataBase.AddDistance(textBoxName1.Text, textBoxName2.Text, Convert.ToDouble(textBoxDistance.Text));
-                                labelInfo.Text = "Данные успешно внесены";
+                                if (check())
+                                {
+                                    DataBase dataBase = new DataBase();
 
+                                    dataBase.AddAirport(textBoxName1.Text, textBoxShort1.Text, textBoxCountry1.Text);
+                                    dataBase.AddAirport(textBoxName2.Text, textBoxShort2.Text, textBoxCountry2.Text);
+                                    dataBase.AddDistance(textBoxName1.Text, textBoxName2.Text, Convert.ToDouble(textBoxDistance.Text));
+                                    labelInfo.Text = "Данные успешно внесены";
+                                }
                             }
                             else
                             {

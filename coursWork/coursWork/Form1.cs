@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
+using System.Text.RegularExpressions;
+using Application = System.Windows.Forms.Application;
 
 namespace coursWork
 {
@@ -129,80 +132,90 @@ namespace coursWork
                 if (textBoxName1.Text != "" || textBoxName1.Text != "City of departure" 
                     || textBoxName2.Text != "" || textBoxName2.Text != "City of arrival")
                 {
-                    dataGridView1.Rows.Clear();
-                    if (dataBase.search(textBoxName1.Text) && dataBase.search(textBoxName2.Text))
+                    string re = @"^[A-ZА-ЯЁ][a-zа-яё]+";
+                    if ((Regex.IsMatch(textBoxName1.Text, re)) && Regex.IsMatch(textBoxName2.Text, re))
                     {
-                        airports.Clear();
-                        distances.Clear();
-                        labelFindInfo.Text = "information found";
-
-                        string fullName1 = "", fullName2 = "", dist = "";
-
-                        metod(textBoxName1.Text, textBoxName2.Text);
-                        // labelFindInfo.Text = airports.Count().ToString();
-                        for (int i = 0; i < airports.Count(); i++)
+                        dataGridView1.Rows.Clear();
+                        if (dataBase.search(textBoxName1.Text) && dataBase.search(textBoxName2.Text))
                         {
-                            string fullName = airports[i].GetFullName();
-                            bool found = false;
+                            airports.Clear();
+                            distances.Clear();
+                            labelFindInfo.Text = "information found";
 
-                            if (File.Exists(filePathDistance))
+                            string fullName1 = "", fullName2 = "", dist = "";
+
+                            metod(textBoxName1.Text, textBoxName2.Text);
+                            // labelFindInfo.Text = airports.Count().ToString();
+                            for (int i = 0; i < airports.Count(); i++)
                             {
-                                using (StreamReader reader = new StreamReader(filePathDistance))
+                                string fullName = airports[i].GetFullName();
+                                bool found = false;
+
+                                if (File.Exists(filePathDistance))
                                 {
-                                    string line;
-                                    while ((line = reader.ReadLine()) != null)
+                                    using (StreamReader reader = new StreamReader(filePathDistance))
                                     {
-                                        if (line.Contains(fullName))
+                                        string line;
+                                        while ((line = reader.ReadLine()) != null)
                                         {
-                                            string[] words = line.Split(' ');
-                                            if (words.Length >= 3)
+                                            if (line.Contains(fullName))
                                             {
-                                                fullName1 = words[0];
-                                                fullName2 = words[1];
-                                                dist = words[2];
-                                                if ((dataBase.AirportIn(fullName1, textBoxName1.Text) && dataBase.AirportIn(fullName2, textBoxName2.Text))
-                                                || (dataBase.AirportIn(fullName2, textBoxName1.Text) && dataBase.AirportIn(fullName1, textBoxName2.Text)))
+                                                string[] words = line.Split(' ');
+                                                if (words.Length >= 3)
                                                 {
-                                                    Console.WriteLine("В дистанции: " + fullName1 + fullName2 + dist);
-                                                    distances.Add(new Distance(fullName1, fullName2, Convert.ToDouble(dist)));
-                                                    distances.Add(new Distance(fullName2, fullName1, Convert.ToDouble(dist)));
+                                                    fullName1 = words[0];
+                                                    fullName2 = words[1];
+                                                    dist = words[2];
+                                                    if ((dataBase.AirportIn(fullName1, textBoxName1.Text) && dataBase.AirportIn(fullName2, textBoxName2.Text))
+                                                    || (dataBase.AirportIn(fullName2, textBoxName1.Text) && dataBase.AirportIn(fullName1, textBoxName2.Text)))
+                                                    {
+                                                        Console.WriteLine("В дистанции: " + fullName1 + fullName2 + dist);
+                                                        distances.Add(new Distance(fullName1, fullName2, Convert.ToDouble(dist)));
+                                                        distances.Add(new Distance(fullName2, fullName1, Convert.ToDouble(dist)));
+                                                    }
                                                 }
+                                                found = true;
                                             }
-                                            found = true;
                                         }
                                     }
                                 }
-                            }
 
-                            if (!found)
-                            {
-                                Console.WriteLine($"Аэропорт {fullName} не найден в файле");
-                            }
-                        }
-
-                        // labelFindInfo.Text = distances.Count().ToString();
-                        // dataGridView1[0, 0].Value;
-                        if (distances.Count > 0)
-                        {
-                            int j = 0;
-                            dataGridView1.RowCount = distances.Count() / 4;
-                            for (int i = 0; i < distances.Count() / 2; i++)
-                            {
-                                if (dataBase.AirportIn(distances[i].GetName1(), textBoxName1.Text))
+                                if (!found)
                                 {
-                                    dataGridView1[0, j].Value = distances[i].GetName1() + " ("+ dataBase.GetShortNameFromName(distances[i].GetName1()) + ")";
-                                    dataGridView1[1, j].Value = distances[i].GetName2() + " ("+ dataBase.GetShortNameFromName(distances[i].GetName2()) + ")";
-                                    dataGridView1[2, j].Value = distances[i].GetDistance();
-                                    j++;
+                                    Console.WriteLine($"Аэропорт {fullName} не найден в файле");
                                 }
                             }
-                        } else
+
+                            // labelFindInfo.Text = distances.Count().ToString();
+                            // dataGridView1[0, 0].Value;
+                            if (distances.Count > 0)
+                            {
+                                int j = 0;
+                                dataGridView1.RowCount = distances.Count() / 4;
+                                for (int i = 0; i < distances.Count() / 2; i++)
+                                {
+                                    if (dataBase.AirportIn(distances[i].GetName1(), textBoxName1.Text))
+                                    {
+                                        dataGridView1[0, j].Value = distances[i].GetName1() + " (" + dataBase.GetShortNameFromName(distances[i].GetName1()) + ")";
+                                        dataGridView1[1, j].Value = distances[i].GetName2() + " (" + dataBase.GetShortNameFromName(distances[i].GetName2()) + ")";
+                                        dataGridView1[2, j].Value = distances[i].GetDistance();
+                                        j++;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("route not found");
+                            }
+                        }
+                        else
                         {
-                            throw new Exception("route not found");
-                        }                    } 
+                            throw new Exception("airport not found");
+                        }
+                    }
                     else
                     {
-                        throw new Exception("airport not found");
+                        throw new Exception("The city must contain Cyrillic or Latin characters and begin with a capital letter");
                     }
                 } 
                 else
