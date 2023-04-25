@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelBack = new System.Windows.Forms.Panel();
-            this.buttonShow = new System.Windows.Forms.Button();
+            this.buttonShowAllAir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,16 +38,17 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelFindInfo = new System.Windows.Forms.Label();
             this.panelSearch = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.buttonInverse = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panelUp = new System.Windows.Forms.Panel();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.buttonShowAllRouts = new System.Windows.Forms.Button();
             this.panelBack.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -60,7 +61,6 @@
             this.panelBack.BackColor = System.Drawing.Color.PowderBlue;
             this.panelBack.BackgroundImage = global::coursWork.Properties.Resources.form1back;
             this.panelBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelBack.Controls.Add(this.buttonShow);
             this.panelBack.Controls.Add(this.panel1);
             this.panelBack.Controls.Add(this.panelSearch);
             this.panelBack.Controls.Add(this.label1);
@@ -71,21 +71,21 @@
             this.panelBack.Size = new System.Drawing.Size(1056, 638);
             this.panelBack.TabIndex = 0;
             // 
-            // buttonShow
+            // buttonShowAllAir
             // 
-            this.buttonShow.BackColor = System.Drawing.Color.DarkCyan;
-            this.buttonShow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonShow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonShow.FlatAppearance.BorderSize = 0;
-            this.buttonShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonShow.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonShow.Location = new System.Drawing.Point(959, 36);
-            this.buttonShow.Name = "buttonShow";
-            this.buttonShow.Size = new System.Drawing.Size(97, 30);
-            this.buttonShow.TabIndex = 3;
-            this.buttonShow.Text = "show";
-            this.buttonShow.UseVisualStyleBackColor = false;
-            this.buttonShow.Click += new System.EventHandler(this.buttonShow_Click);
+            this.buttonShowAllAir.BackColor = System.Drawing.Color.DarkCyan;
+            this.buttonShowAllAir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonShowAllAir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonShowAllAir.FlatAppearance.BorderSize = 0;
+            this.buttonShowAllAir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShowAllAir.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonShowAllAir.Location = new System.Drawing.Point(736, 0);
+            this.buttonShowAllAir.Name = "buttonShowAllAir";
+            this.buttonShowAllAir.Size = new System.Drawing.Size(217, 30);
+            this.buttonShowAllAir.TabIndex = 3;
+            this.buttonShowAllAir.Text = "show all airports";
+            this.buttonShowAllAir.UseVisualStyleBackColor = false;
+            this.buttonShowAllAir.Click += new System.EventHandler(this.buttonShow_Click);
             // 
             // panel1
             // 
@@ -156,6 +156,37 @@
             this.panelSearch.Size = new System.Drawing.Size(864, 78);
             this.panelSearch.TabIndex = 2;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(378, 2);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 19);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "City of arrival";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(52, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 19);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "City of departure";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(378, 24);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(242, 29);
+            this.comboBox2.TabIndex = 5;
+            // 
             // buttonInverse
             // 
             this.buttonInverse.BackColor = System.Drawing.Color.Transparent;
@@ -171,6 +202,15 @@
             this.buttonInverse.TabIndex = 2;
             this.buttonInverse.UseVisualStyleBackColor = false;
             this.buttonInverse.Click += new System.EventHandler(this.buttonInverse_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(56, 24);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(242, 29);
+            this.comboBox1.TabIndex = 4;
             // 
             // buttonSearch
             // 
@@ -202,7 +242,9 @@
             // panelUp
             // 
             this.panelUp.BackColor = System.Drawing.Color.Transparent;
+            this.panelUp.Controls.Add(this.buttonShowAllRouts);
             this.panelUp.Controls.Add(this.buttonAdd);
+            this.panelUp.Controls.Add(this.buttonShowAllAir);
             this.panelUp.Controls.Add(this.buttonClose);
             this.panelUp.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUp.Location = new System.Drawing.Point(0, 0);
@@ -245,45 +287,21 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
-            // comboBox1
+            // buttonShowAllRouts
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(56, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(242, 29);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(378, 24);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(242, 29);
-            this.comboBox2.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(52, 2);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 19);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "City of departure";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(378, 2);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 19);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "City of arrival";
+            this.buttonShowAllRouts.BackColor = System.Drawing.Color.DarkCyan;
+            this.buttonShowAllRouts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonShowAllRouts.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonShowAllRouts.FlatAppearance.BorderSize = 0;
+            this.buttonShowAllRouts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShowAllRouts.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonShowAllRouts.Location = new System.Drawing.Point(513, 0);
+            this.buttonShowAllRouts.Name = "buttonShowAllRouts";
+            this.buttonShowAllRouts.Size = new System.Drawing.Size(217, 30);
+            this.buttonShowAllRouts.TabIndex = 4;
+            this.buttonShowAllRouts.Text = "show all routs";
+            this.buttonShowAllRouts.UseVisualStyleBackColor = false;
+            this.buttonShowAllRouts.Click += new System.EventHandler(this.buttonShowAllRouts_Click);
             // 
             // Form1
             // 
@@ -323,11 +341,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonInverse;
-        private System.Windows.Forms.Button buttonShow;
+        private System.Windows.Forms.Button buttonShowAllAir;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonShowAllRouts;
     }
 }
 

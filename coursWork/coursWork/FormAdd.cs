@@ -200,10 +200,30 @@ namespace coursWork
             return f;
         }
 
+        private bool FieldsAreFilled()
+        {
+            if (string.IsNullOrEmpty(textBoxName1.Text) || textBoxName1.Text == "airport name" ||
+                string.IsNullOrEmpty(textBoxName2.Text) || textBoxName2.Text == "airport name" ||
+                string.IsNullOrEmpty(textBoxShort1.Text) || textBoxShort1.Text == "short name" ||
+                string.IsNullOrEmpty(textBoxShort2.Text) || textBoxShort2.Text == "short name" ||
+                string.IsNullOrEmpty(textBoxCountry1.Text) || textBoxCountry1.Text == "city" ||
+                string.IsNullOrEmpty(textBoxCountry2.Text) || textBoxCountry2.Text == "city" ||
+                string.IsNullOrEmpty(textBoxDistance.Text) || textBoxDistance.Text == "distance")
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private void buttonGo_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!FieldsAreFilled())
+                {
+                    throw new Exception("nothing is filled in\n\nничего не заполнено");
+                }
                 if (textBoxName1.Text != "" || textBoxName1.Text != "airport name" || textBoxName2.Text != "" || textBoxName2.Text != "airport name")
                 {
                     if (textBoxShort1.Text != "" || textBoxShort1.Text != "short name" || textBoxShort2.Text != "" || textBoxShort2.Text != "short name")
@@ -224,23 +244,27 @@ namespace coursWork
                             }
                             else
                             {
-                                throw new Exception("not all fields are filled in (no distance)");
+                                throw new Exception("not all fields are filled in (no distance)\n\n" +
+                                    "не все поля заполнены (расстояние не указано)");
                             }
                         }
                         else
                         {
-                            throw new Exception("not all fields are filled in (no city)");
+                            throw new Exception("not all fields are filled in (no city)\n\n" +
+                                "не все поля заполнены (нет города)");
                         }
 
                     }
                     else
                     {
-                        throw new Exception("not all fields are filled in (short name)");
+                        throw new Exception("not all fields are filled in (short name)\n\n" +
+                            "не все поля заполнены (краткое название)");
                     }
                 } 
                 else
                 {
-                    throw new Exception("not all fields are filled in");
+                    throw new Exception("not all fields are filled in (airport name)\n\n" +
+                        "не все поля заполнены (нет названия аэропорта)");
                 }
             }
             catch (Exception ex)

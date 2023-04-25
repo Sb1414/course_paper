@@ -18,9 +18,11 @@ namespace coursWork
 {
     public partial class Form1 : Form
     {
-        List<Airport> airports = new List<Airport>();
-        List<Distance> distances = new List<Distance>();
-        
+        // List<Airport> airport = new List<Airport>();
+        // List<Distance> distance = new List<Distance>();
+        AirportList airportList = new AirportList();
+        DistanceList distanceList = new DistanceList();
+
         FormAdd formAdd;
         FormShow formShow;
         DataBase dataBase = new DataBase();
@@ -81,11 +83,11 @@ namespace coursWork
                     name1 = line.Split(' ')[1];
                     countr = line.Split(' ')[2];
                 }
-                airports.Add(new Airport(fullName, name1, countr));
+                airportList.AddAirport(new Airport(fullName, name1, countr));
             }
         }
 
-        public void addAllAirports()
+        public void addAllairportList()
         {
             string filePathAirport = fullPath() + "\\airport.txt";
 
@@ -102,7 +104,7 @@ namespace coursWork
                         string fullName = words[0];
                         string name1 = words[1];
                         string countr = words[2];
-                        airports.Add(new Airport(fullName, name1, countr));
+                        airportList.AddAirport(new Airport(fullName, name1, countr));
                     }
                 }
             }
@@ -111,118 +113,132 @@ namespace coursWork
 
         private void AddItemsToComboBox()
         {
-            addAllAirports();
-            for (int i = 0; i < airports.Count; i++)
+            addAllairportList();
+            HashSet<string> uniqueCountries = new HashSet<string>();
+            for (int i = 0; i < airportList.Count(); i++)
             {
-                comboBox1.Items.Add(airports[i].GetCountry());
-                comboBox2.Items.Add(airports[i].GetCountry());
+                string country = airportList[i].GetCountry();
+                if (!uniqueCountries.Contains(country))
+                {
+                    comboBox1.Items.Add(country);
+                    comboBox2.Items.Add(country);
+                    uniqueCountries.Add(country);
+                }
             }
         }
-
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             try
             {
-                if (comboBox1.Text != "" || comboBox2.Text != "")
-                {
-                    string re = @"^[A-ZА-ЯЁ][a-zа-яё]+";
-                    if ((Regex.IsMatch(comboBox1.Text, re)) && Regex.IsMatch(comboBox2.Text, re))
-                    {
-                        dataGridView1.Rows.Clear();
-                        if (dataBase.search(comboBox1.Text) && dataBase.search(comboBox2.Text))
-                        {
-                            airports.Clear();
-                            distances.Clear();
-                            labelFindInfo.Text = "information found";
-
-                            string fullName1 = "", fullName2 = "", dist = "";
-
-                            metodAddAir(comboBox1.Text, comboBox2.Text);
-                            // labelFindInfo.Text = airports.Count().ToString();
-                            for (int i = 0; i < airports.Count(); i++)
-                            {
-                                string fullName = airports[i].GetFullName();
-                                bool found = false;
-
-                                if (File.Exists(filePathDistance))
-                                {
-                                    using (StreamReader reader = new StreamReader(filePathDistance))
-                                    {
-                                        string line;
-                                        while ((line = reader.ReadLine()) != null)
-                                        {
-                                            if (line.Contains(fullName))
-                                            {
-                                                string[] words = line.Split(' ');
-                                                if (words.Length >= 3)
-                                                {
-                                                    fullName1 = words[0];
-                                                    fullName2 = words[1];
-                                                    dist = words[2];
-                                                    if ((dataBase.AirportIn(fullName1, comboBox1.Text) && dataBase.AirportIn(fullName2, comboBox2.Text))
-                                                    || (dataBase.AirportIn(fullName2, comboBox1.Text) && dataBase.AirportIn(fullName1, comboBox2.Text)))
-                                                    {
-                                                        Console.WriteLine("В дистанции: " + fullName1 + fullName2 + dist);
-                                                        distances.Add(new Distance(fullName1, fullName2, Convert.ToDouble(dist)));
-                                                        distances.Add(new Distance(fullName2, fullName1, Convert.ToDouble(dist)));
-                                                    }
-                                                }
-                                                found = true;
-                                            }
-                                        }
-                                    }
-                                }
-
-                                if (!found)
-                                {
-                                    Console.WriteLine($"Аэропорт {fullName} не найден в файле");
-                                }
-                            }
-
-                            // labelFindInfo.Text = distances.Count().ToString();
-                            // dataGridView1[0, 0].Value;
-                            if (distances.Count > 0)
-                            {
-                                int j = 0;
-                                dataGridView1.RowCount = distances.Count() / 4;
-                                for (int i = 0; i < distances.Count() / 2; i++)
-                                {
-                                    if (dataBase.AirportIn(distances[i].GetName1(), comboBox1.Text))
-                                    {
-                                        dataGridView1[0, j].Value = distances[i].GetName1() + " (" + dataBase.GetShortNameFromName(distances[i].GetName1()) + ")";
-                                        dataGridView1[1, j].Value = distances[i].GetName2() + " (" + dataBase.GetShortNameFromName(distances[i].GetName2()) + ")";
-                                        dataGridView1[2, j].Value = distances[i].GetDistance();
-                                        j++;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                throw new Exception("route not found");
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception("airport not found");
-                        }
-                    }
-                    else
-                    {
-                        throw new Exception("The city must contain Cyrillic or Latin characters and begin with a capital letter");
-                    }
-                } 
-                else
-                {
-                    throw new Exception("not all fields are filled in");
-                }
+                ValidateFields(); // проверка на пустоту значений в полях
+                Search(); // поиск аэропортов и расстояний
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message); // вывод ошибок
             }
         }
 
+        private void ValidateFields()
+        {
+            if (comboBox1.Text == "" || comboBox2.Text == "")
+            {
+                throw new Exception("Not all fields are filled in\n\nЗаполнены не все поля");
+            }
+            string re = @"^[A-ZА-ЯЁ][a-zа-яё]+";
+            if (!Regex.IsMatch(comboBox1.Text, re) || !Regex.IsMatch(comboBox2.Text, re))
+            {
+                throw new Exception("The city must contain Cyrillic or Latin characters and begin with a capital letter\n\n" +
+                    "Название города должно содержать кириллические или латинские символы и начинаться с заглавной буквы");
+            }
+        }
+
+        private void Search()
+        {
+            dataGridView1.Rows.Clear();
+            airportList.Clear();
+            distanceList.Clear();
+
+            if (!dataBase.search(comboBox1.Text) || !dataBase.search(comboBox2.Text))
+            {
+                throw new Exception("Airport not found\n\nАэропорт не найден");
+            }
+
+            metodAddAir(comboBox1.Text, comboBox2.Text);
+            LoadDistances();
+            UpdateUI();
+        }
+
+        private void LoadDistances()
+        {
+            string fullName1 = "", fullName2 = "", dist = "";
+            for (int i = 0; i < airportList.Count(); i++)
+            {
+                string fullName = airportList[i].GetFullName();
+                bool found = false;
+
+                if (File.Exists(filePathDistance))
+                {
+                    using (StreamReader reader = new StreamReader(filePathDistance))
+                    {
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            if (line.Contains(fullName))
+                            {
+                                string[] words = line.Split(' ');
+                                if (words.Length >= 3)
+                                {
+                                    fullName1 = words[0];
+                                    fullName2 = words[1];
+                                    dist = words[2];
+                                    if ((dataBase.AirportIn(fullName1, comboBox1.Text) && dataBase.AirportIn(fullName2, comboBox2.Text))
+                                    || (dataBase.AirportIn(fullName2, comboBox1.Text) && dataBase.AirportIn(fullName1, comboBox2.Text)))
+                                    {
+                                        Console.WriteLine("В дистанции: " + fullName1 + fullName2 + dist);
+                                        distanceList.Add(new Distance(fullName1, fullName2, Convert.ToDouble(dist)));
+                                        distanceList.Add(new Distance(fullName2, fullName1, Convert.ToDouble(dist)));
+                                    }
+                                }
+                                found = true;
+                            }
+                        }
+                    }
+                }
+
+                if (!found)
+                {
+                    Console.WriteLine($"Аэропорт {fullName} не найден в файле");
+                }
+            }
+        }
+
+        private void UpdateUI()
+        {
+            labelFindInfo.Text = "information found";
+            if (distanceList.Count() > 0)
+            {
+                int j = 0;
+                dataGridView1.RowCount = distanceList.Count() / 4;
+                for (int i = 0; i < distanceList.Count() / 2; i++)
+                {
+                    if (dataBase.AirportIn(distanceList[i].GetName1(), comboBox1.Text))
+                    {
+                        dataGridView1[0, j].Value = distanceList[i].GetName1() + " (" + dataBase.GetShortNameFromName(distanceList[i].GetName1()) + ")";
+                        dataGridView1[1, j].Value = distanceList[i].GetName2() + " (" + dataBase.GetShortNameFromName(distanceList[i].GetName2()) + ")";
+                        dataGridView1[2, j].Value = distanceList[i].GetDistance();
+                        j++;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Route not found\n\nПуть не найден", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+       
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             new FormAdd(this).Show();
@@ -254,6 +270,12 @@ namespace coursWork
         private void buttonShow_Click(object sender, EventArgs e)
         {
             new FormShow(this).Show();
+        }
+
+        private void buttonShowAllRouts_Click(object sender, EventArgs e)
+        {
+            ShowRoutes showRoutes = new ShowRoutes();
+            showRoutes.Show();
         }
     }
 }
