@@ -12,6 +12,7 @@ using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text.RegularExpressions;
 using Application = System.Windows.Forms.Application;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace coursWork
 {
@@ -40,10 +41,7 @@ namespace coursWork
         public Form1()
         {
             InitializeComponent();
-            textBoxName1.Text = "City of departure";
-            textBoxName2.Text = "City of arrival";
-            textBoxName1.ForeColor = Color.Gray;
-            textBoxName2.ForeColor = Color.Gray;
+            AddItemsToComboBox();
         }
 
         Point lastPoint;
@@ -66,43 +64,7 @@ namespace coursWork
             Application.Exit();
         }
 
-        private void toolStripTextBox1_Enter(object sender, EventArgs e)
-        {
-            if (textBoxName1.Text == "City of departure")
-            {
-                textBoxName1.Text = "";
-                textBoxName1.ForeColor = Color.Black;
-            }
-        }
-
-        private void toolStripTextBox1_Leave(object sender, EventArgs e)
-        {
-            if (textBoxName1.Text == "")
-            {
-                textBoxName1.Text = "City of departure";
-                textBoxName1.ForeColor = Color.Gray;
-            }
-        }
-
-        private void toolStripTextBox2_Enter(object sender, EventArgs e)
-        {
-            if (textBoxName2.Text == "City of arrival")
-            {
-                textBoxName2.Text = "";
-                textBoxName2.ForeColor = Color.Black;
-            }
-        }
-
-        private void toolStripTextBox2_Leave(object sender, EventArgs e)
-        {
-            if (textBoxName2.Text == "")
-            {
-                textBoxName2.Text = "City of arrival";
-                textBoxName2.ForeColor = Color.Gray;
-            }
-        }
-
-        private void metod(string searchString1, string searchString2)
+        private void metodAddAir(string searchString1, string searchString2)
         {
             string name1 = "", fullName = "", countr = "";
 
@@ -121,7 +83,40 @@ namespace coursWork
                 }
                 airports.Add(new Airport(fullName, name1, countr));
             }
-            
+        }
+
+        public void addAllAirports()
+        {
+            string filePathAirport = fullPath() + "\\airport.txt";
+
+            using (StreamReader sr = new StreamReader(filePathAirport))
+            {
+                string line;
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] words = line.Split(' ');
+
+                    if (words.Length == 3)
+                    {
+                        string fullName = words[0];
+                        string name1 = words[1];
+                        string countr = words[2];
+                        airports.Add(new Airport(fullName, name1, countr));
+                    }
+                }
+            }
+
+        }
+
+        private void AddItemsToComboBox()
+        {
+            addAllAirports();
+            for (int i = 0; i < airports.Count; i++)
+            {
+                comboBox1.Items.Add(airports[i].GetCountry());
+                comboBox2.Items.Add(airports[i].GetCountry());
+            }
         }
 
 
@@ -129,14 +124,13 @@ namespace coursWork
         {
             try
             {
-                if (textBoxName1.Text != "" || textBoxName1.Text != "City of departure" 
-                    || textBoxName2.Text != "" || textBoxName2.Text != "City of arrival")
+                if (comboBox1.Text != "" || comboBox2.Text != "")
                 {
                     string re = @"^[A-ZА-ЯЁ][a-zа-яё]+";
-                    if ((Regex.IsMatch(textBoxName1.Text, re)) && Regex.IsMatch(textBoxName2.Text, re))
+                    if ((Regex.IsMatch(comboBox1.Text, re)) && Regex.IsMatch(comboBox2.Text, re))
                     {
                         dataGridView1.Rows.Clear();
-                        if (dataBase.search(textBoxName1.Text) && dataBase.search(textBoxName2.Text))
+                        if (dataBase.search(comboBox1.Text) && dataBase.search(comboBox2.Text))
                         {
                             airports.Clear();
                             distances.Clear();
@@ -144,7 +138,7 @@ namespace coursWork
 
                             string fullName1 = "", fullName2 = "", dist = "";
 
-                            metod(textBoxName1.Text, textBoxName2.Text);
+                            metodAddAir(comboBox1.Text, comboBox2.Text);
                             // labelFindInfo.Text = airports.Count().ToString();
                             for (int i = 0; i < airports.Count(); i++)
                             {
@@ -166,8 +160,8 @@ namespace coursWork
                                                     fullName1 = words[0];
                                                     fullName2 = words[1];
                                                     dist = words[2];
-                                                    if ((dataBase.AirportIn(fullName1, textBoxName1.Text) && dataBase.AirportIn(fullName2, textBoxName2.Text))
-                                                    || (dataBase.AirportIn(fullName2, textBoxName1.Text) && dataBase.AirportIn(fullName1, textBoxName2.Text)))
+                                                    if ((dataBase.AirportIn(fullName1, comboBox1.Text) && dataBase.AirportIn(fullName2, comboBox2.Text))
+                                                    || (dataBase.AirportIn(fullName2, comboBox1.Text) && dataBase.AirportIn(fullName1, comboBox2.Text)))
                                                     {
                                                         Console.WriteLine("В дистанции: " + fullName1 + fullName2 + dist);
                                                         distances.Add(new Distance(fullName1, fullName2, Convert.ToDouble(dist)));
@@ -194,7 +188,7 @@ namespace coursWork
                                 dataGridView1.RowCount = distances.Count() / 4;
                                 for (int i = 0; i < distances.Count() / 2; i++)
                                 {
-                                    if (dataBase.AirportIn(distances[i].GetName1(), textBoxName1.Text))
+                                    if (dataBase.AirportIn(distances[i].GetName1(), comboBox1.Text))
                                     {
                                         dataGridView1[0, j].Value = distances[i].GetName1() + " (" + dataBase.GetShortNameFromName(distances[i].GetName1()) + ")";
                                         dataGridView1[1, j].Value = distances[i].GetName2() + " (" + dataBase.GetShortNameFromName(distances[i].GetName2()) + ")";
@@ -236,12 +230,11 @@ namespace coursWork
 
         private void buttonInverse_Click(object sender, EventArgs e)
         {
-            if ((textBoxName1.Text != "" && textBoxName1.Text != "City of departure") &&
-                     (textBoxName2.Text != "" && textBoxName2.Text != "City of arrival"))
+            if (comboBox1.Text != "" && comboBox2.Text != "")
             {
-                string tmp = textBoxName1.Text;
-                textBoxName1.Text = textBoxName2.Text;
-                textBoxName2.Text = tmp;
+                string tmp = comboBox1.Text;
+                comboBox1.Text = comboBox2.Text;
+                comboBox2.Text = tmp;
             }
             if (dataGridView1.Rows.Count > 0)
             {

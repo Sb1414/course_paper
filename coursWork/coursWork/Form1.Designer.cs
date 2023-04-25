@@ -40,12 +40,14 @@
             this.panelSearch = new System.Windows.Forms.Panel();
             this.buttonInverse = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
-            this.textBoxName2 = new System.Windows.Forms.TextBox();
-            this.textBoxName1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelUp = new System.Windows.Forms.Panel();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panelBack.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -143,10 +145,12 @@
             // panelSearch
             // 
             this.panelSearch.BackColor = System.Drawing.Color.Transparent;
+            this.panelSearch.Controls.Add(this.label3);
+            this.panelSearch.Controls.Add(this.label2);
+            this.panelSearch.Controls.Add(this.comboBox2);
             this.panelSearch.Controls.Add(this.buttonInverse);
+            this.panelSearch.Controls.Add(this.comboBox1);
             this.panelSearch.Controls.Add(this.buttonSearch);
-            this.panelSearch.Controls.Add(this.textBoxName2);
-            this.panelSearch.Controls.Add(this.textBoxName1);
             this.panelSearch.Location = new System.Drawing.Point(96, 101);
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Size = new System.Drawing.Size(864, 78);
@@ -183,26 +187,6 @@
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = false;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
-            // textBoxName2
-            // 
-            this.textBoxName2.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName2.Location = new System.Drawing.Point(378, 24);
-            this.textBoxName2.Name = "textBoxName2";
-            this.textBoxName2.Size = new System.Drawing.Size(240, 31);
-            this.textBoxName2.TabIndex = 1;
-            this.textBoxName2.Enter += new System.EventHandler(this.toolStripTextBox2_Enter);
-            this.textBoxName2.Leave += new System.EventHandler(this.toolStripTextBox2_Leave);
-            // 
-            // textBoxName1
-            // 
-            this.textBoxName1.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName1.Location = new System.Drawing.Point(58, 24);
-            this.textBoxName1.Name = "textBoxName1";
-            this.textBoxName1.Size = new System.Drawing.Size(240, 31);
-            this.textBoxName1.TabIndex = 0;
-            this.textBoxName1.Enter += new System.EventHandler(this.toolStripTextBox1_Enter);
-            this.textBoxName1.Leave += new System.EventHandler(this.toolStripTextBox1_Leave);
             // 
             // label1
             // 
@@ -261,6 +245,46 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(56, 24);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(242, 29);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(378, 24);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(242, 29);
+            this.comboBox2.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(52, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 19);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "City of departure";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(378, 2);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 19);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "City of arrival";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -290,8 +314,6 @@
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelSearch;
-        private System.Windows.Forms.TextBox textBoxName2;
-        private System.Windows.Forms.TextBox textBoxName1;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label labelFindInfo;
@@ -302,6 +324,10 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonInverse;
         private System.Windows.Forms.Button buttonShow;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
