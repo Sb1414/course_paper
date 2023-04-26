@@ -21,24 +21,24 @@ namespace coursWork
         {
             form1 = owner;
             InitializeComponent();
-            textBoxName1.Text = "airport name";
-            textBoxName2.Text = "airport name";
-            textBoxName1.ForeColor = Color.Gray;
-            textBoxName2.ForeColor = Color.Gray;
+            textBoxName1.Text = "example: Vnukovo";
+            textBoxName2.Text = "example: Koltsevo";
+            textBoxName1.ForeColor = Color.PowderBlue;
+            textBoxName2.ForeColor = Color.PowderBlue;
 
-            textBoxShort1.Text = "short name";
-            textBoxShort2.Text = "short name";
-            textBoxShort1.ForeColor = Color.Gray;
-            textBoxShort2.ForeColor = Color.Gray;
+            textBoxShort1.Text = "example: KZN";
+            textBoxShort2.Text = "example: SVO";
+            textBoxShort1.ForeColor = Color.PowderBlue;
+            textBoxShort2.ForeColor = Color.PowderBlue;
 
-            textBoxDistance.Text = "distance";
-            textBoxDistance.ForeColor = Color.Gray;
+            textBoxDistance.Text = "example: 1200,2";
+            textBoxDistance.ForeColor = Color.PowderBlue;
 
-            textBoxCountry1.Text = "city";
-            textBoxCountry1.ForeColor = Color.Gray;
+            textBoxCountry1.Text = "example: Kazan";
+            textBoxCountry1.ForeColor = Color.PowderBlue;
 
-            textBoxCountry2.Text = "city";
-            textBoxCountry2.ForeColor = Color.Gray;
+            textBoxCountry2.Text = "example: Moscow";
+            textBoxCountry2.ForeColor = Color.PowderBlue;
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace coursWork
 
         private void textBoxName1_Enter(object sender, EventArgs e)
         {
-            if (textBoxName1.Text == "airport name")
+            if (textBoxName1.Text == "example: Vnukovo")
             {
                 textBoxName1.Text = "";
                 textBoxName1.ForeColor = Color.Black;
@@ -74,14 +74,14 @@ namespace coursWork
         {
             if (textBoxName1.Text == "")
             {
-                textBoxName1.Text = "airport name";
-                textBoxName1.ForeColor = Color.Gray;
+                textBoxName1.Text = "example: Vnukovo";
+                textBoxName1.ForeColor = Color.PowderBlue;
             }
         }
 
         private void textBoxName2_Enter(object sender, EventArgs e)
         {
-            if (textBoxName2.Text == "airport name")
+            if (textBoxName2.Text == "example: Koltsevo")
             {
                 textBoxName2.Text = "";
                 textBoxName2.ForeColor = Color.Black;
@@ -92,14 +92,14 @@ namespace coursWork
         {
             if (textBoxName2.Text == "")
             {
-                textBoxName2.Text = "airport name";
-                textBoxName2.ForeColor = Color.Gray;
+                textBoxName2.Text = "example: Koltsevo";
+                textBoxName2.ForeColor = Color.PowderBlue;
             }
         }
 
         private void textBoxShort1_Enter(object sender, EventArgs e)
         {
-            if (textBoxShort1.Text == "short name")
+            if (textBoxShort1.Text == "example: KZN")
             {
                 textBoxShort1.Text = "";
                 textBoxShort1.ForeColor = Color.Black;
@@ -110,14 +110,14 @@ namespace coursWork
         {
             if (textBoxShort1.Text == "")
             {
-                textBoxShort1.Text = "short name";
-                textBoxShort1.ForeColor = Color.Gray;
+                textBoxShort1.Text = "example: KZN";
+                textBoxShort1.ForeColor = Color.PowderBlue;
             }
         }
 
         private void textBoxShort2_Enter(object sender, EventArgs e)
         {
-            if (textBoxShort2.Text == "short name")
+            if (textBoxShort2.Text == "example: SVO")
             {
                 textBoxShort2.Text = "";
                 textBoxShort2.ForeColor = Color.Black;
@@ -128,14 +128,14 @@ namespace coursWork
         {
             if (textBoxShort2.Text == "")
             {
-                textBoxShort2.Text = "short name";
-                textBoxShort2.ForeColor = Color.Gray;
+                textBoxShort2.Text = "example: SVO";
+                textBoxShort2.ForeColor = Color.PowderBlue;
             }
         }
 
         private void textBoxDistance_Enter(object sender, EventArgs e)
         {
-            if (textBoxDistance.Text == "distance")
+            if (textBoxDistance.Text == "example: 1200,2")
             {
                 textBoxDistance.Text = "";
                 textBoxDistance.ForeColor = Color.Black;
@@ -146,8 +146,8 @@ namespace coursWork
         {
             if (textBoxDistance.Text == "")
             {
-                textBoxDistance.Text = "distance";
-                textBoxDistance.ForeColor = Color.Gray;
+                textBoxDistance.Text = "example: 1200,2";
+                textBoxDistance.ForeColor = Color.PowderBlue;
             }
         }
 
@@ -202,13 +202,13 @@ namespace coursWork
 
         private bool FieldsAreFilled()
         {
-            if (string.IsNullOrEmpty(textBoxName1.Text) || textBoxName1.Text == "airport name" ||
-                string.IsNullOrEmpty(textBoxName2.Text) || textBoxName2.Text == "airport name" ||
-                string.IsNullOrEmpty(textBoxShort1.Text) || textBoxShort1.Text == "short name" ||
-                string.IsNullOrEmpty(textBoxShort2.Text) || textBoxShort2.Text == "short name" ||
-                string.IsNullOrEmpty(textBoxCountry1.Text) || textBoxCountry1.Text == "city" ||
-                string.IsNullOrEmpty(textBoxCountry2.Text) || textBoxCountry2.Text == "city" ||
-                string.IsNullOrEmpty(textBoxDistance.Text) || textBoxDistance.Text == "distance")
+            if (string.IsNullOrEmpty(textBoxName1.Text) || textBoxName1.Text == "example: Vnukovo" ||
+                string.IsNullOrEmpty(textBoxName2.Text) || textBoxName2.Text == "example: Koltsevo" ||
+                string.IsNullOrEmpty(textBoxShort1.Text) || textBoxShort1.Text == "example: KZN" ||
+                string.IsNullOrEmpty(textBoxShort2.Text) || textBoxShort2.Text == "example: SVO" ||
+                string.IsNullOrEmpty(textBoxCountry1.Text) || textBoxCountry1.Text == "example: Kazan" ||
+                string.IsNullOrEmpty(textBoxCountry2.Text) || textBoxCountry2.Text == "example: Moscow" ||
+                string.IsNullOrEmpty(textBoxDistance.Text) || textBoxDistance.Text == "example: 1200,2")
             {
                 return false;
             }
@@ -224,13 +224,13 @@ namespace coursWork
                 {
                     throw new Exception("nothing is filled in\n\nничего не заполнено");
                 }
-                if (textBoxName1.Text != "" || textBoxName1.Text != "airport name" || textBoxName2.Text != "" || textBoxName2.Text != "airport name")
+                if (textBoxName1.Text != "" || textBoxName1.Text != "example: Vnukovo" || textBoxName2.Text != "" || textBoxName2.Text != "example: Koltsevo")
                 {
-                    if (textBoxShort1.Text != "" || textBoxShort1.Text != "short name" || textBoxShort2.Text != "" || textBoxShort2.Text != "short name")
+                    if (textBoxShort1.Text != "" || textBoxShort1.Text != "example: KZN" || textBoxShort2.Text != "" || textBoxShort2.Text != "example: SVO")
                     {
-                        if (textBoxCountry1.Text != "" || textBoxCountry1.Text != "city" || textBoxCountry2.Text != "" || textBoxCountry2.Text != "city")
+                        if (textBoxCountry1.Text != "" || textBoxCountry1.Text != "example: Kazan" || textBoxCountry2.Text != "" || textBoxCountry2.Text != "example: Moscow")
                         {
-                            if (textBoxDistance.Text != "" || textBoxDistance.Text != "distance")
+                            if (textBoxDistance.Text != "" || textBoxDistance.Text != "example: 1200,2")
                             {
                                 if (check())
                                 {
@@ -257,13 +257,13 @@ namespace coursWork
                     }
                     else
                     {
-                        throw new Exception("not all fields are filled in (short name)\n\n" +
+                        throw new Exception("not all fields are filled in (example: KZN)\n\n" +
                             "не все поля заполнены (краткое название)");
                     }
                 } 
                 else
                 {
-                    throw new Exception("not all fields are filled in (airport name)\n\n" +
+                    throw new Exception("not all fields are filled in (example: Vnukovo)\n\n" +
                         "не все поля заполнены (нет названия аэропорта)");
                 }
             }
@@ -275,7 +275,7 @@ namespace coursWork
 
         private void textBoxCountry1_Enter(object sender, EventArgs e)
         {
-            if (textBoxCountry1.Text == "city")
+            if (textBoxCountry1.Text == "example: Kazan")
             {
                 textBoxCountry1.Text = "";
                 textBoxCountry1.ForeColor = Color.Black;
@@ -286,14 +286,14 @@ namespace coursWork
         {
             if (textBoxCountry1.Text == "")
             {
-                textBoxCountry1.Text = "city";
-                textBoxCountry1.ForeColor = Color.Gray;
+                textBoxCountry1.Text = "example: Kazan";
+                textBoxCountry1.ForeColor = Color.PowderBlue;
             }
         }
 
         private void textBoxCountry2_Enter(object sender, EventArgs e)
         {
-            if (textBoxCountry2.Text == "city")
+            if (textBoxCountry2.Text == "example: Moscow")
             {
                 textBoxCountry2.Text = "";
                 textBoxCountry2.ForeColor = Color.Black;
@@ -304,8 +304,8 @@ namespace coursWork
         {
             if (textBoxCountry2.Text == "")
             {
-                textBoxCountry2.Text = "city";
-                textBoxCountry2.ForeColor = Color.Gray;
+                textBoxCountry2.Text = "example: Moscow";
+                textBoxCountry2.ForeColor = Color.PowderBlue;
             }
         }
 

@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelBack = new System.Windows.Forms.Panel();
-            this.buttonShowAllAir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,9 +45,10 @@
             this.buttonSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panelUp = new System.Windows.Forms.Panel();
-            this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonClose = new System.Windows.Forms.Button();
             this.buttonShowAllRouts = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonShowAllAir = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
             this.panelBack.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -70,22 +70,6 @@
             this.panelBack.Name = "panelBack";
             this.panelBack.Size = new System.Drawing.Size(1056, 638);
             this.panelBack.TabIndex = 0;
-            // 
-            // buttonShowAllAir
-            // 
-            this.buttonShowAllAir.BackColor = System.Drawing.Color.DarkCyan;
-            this.buttonShowAllAir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonShowAllAir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonShowAllAir.FlatAppearance.BorderSize = 0;
-            this.buttonShowAllAir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonShowAllAir.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonShowAllAir.Location = new System.Drawing.Point(736, 0);
-            this.buttonShowAllAir.Name = "buttonShowAllAir";
-            this.buttonShowAllAir.Size = new System.Drawing.Size(217, 30);
-            this.buttonShowAllAir.TabIndex = 3;
-            this.buttonShowAllAir.Text = "show all airports";
-            this.buttonShowAllAir.UseVisualStyleBackColor = false;
-            this.buttonShowAllAir.Click += new System.EventHandler(this.buttonShow_Click);
             // 
             // panel1
             // 
@@ -254,6 +238,22 @@
             this.panelUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelUp_MouseDown);
             this.panelUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelUp_MouseMove);
             // 
+            // buttonShowAllRouts
+            // 
+            this.buttonShowAllRouts.BackColor = System.Drawing.Color.DarkCyan;
+            this.buttonShowAllRouts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonShowAllRouts.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonShowAllRouts.FlatAppearance.BorderSize = 0;
+            this.buttonShowAllRouts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShowAllRouts.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonShowAllRouts.Location = new System.Drawing.Point(513, 0);
+            this.buttonShowAllRouts.Name = "buttonShowAllRouts";
+            this.buttonShowAllRouts.Size = new System.Drawing.Size(217, 30);
+            this.buttonShowAllRouts.TabIndex = 4;
+            this.buttonShowAllRouts.Text = "show all routes";
+            this.buttonShowAllRouts.UseVisualStyleBackColor = false;
+            this.buttonShowAllRouts.Click += new System.EventHandler(this.buttonShowAllRouts_Click);
+            // 
             // buttonAdd
             // 
             this.buttonAdd.BackColor = System.Drawing.Color.DarkCyan;
@@ -271,6 +271,22 @@
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
+            // buttonShowAllAir
+            // 
+            this.buttonShowAllAir.BackColor = System.Drawing.Color.DarkCyan;
+            this.buttonShowAllAir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonShowAllAir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonShowAllAir.FlatAppearance.BorderSize = 0;
+            this.buttonShowAllAir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShowAllAir.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonShowAllAir.Location = new System.Drawing.Point(736, 0);
+            this.buttonShowAllAir.Name = "buttonShowAllAir";
+            this.buttonShowAllAir.Size = new System.Drawing.Size(217, 30);
+            this.buttonShowAllAir.TabIndex = 3;
+            this.buttonShowAllAir.Text = "show all airports";
+            this.buttonShowAllAir.UseVisualStyleBackColor = false;
+            this.buttonShowAllAir.Click += new System.EventHandler(this.buttonShow_Click);
+            // 
             // buttonClose
             // 
             this.buttonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -286,22 +302,6 @@
             this.buttonClose.Text = "x";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // buttonShowAllRouts
-            // 
-            this.buttonShowAllRouts.BackColor = System.Drawing.Color.DarkCyan;
-            this.buttonShowAllRouts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonShowAllRouts.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonShowAllRouts.FlatAppearance.BorderSize = 0;
-            this.buttonShowAllRouts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonShowAllRouts.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonShowAllRouts.Location = new System.Drawing.Point(513, 0);
-            this.buttonShowAllRouts.Name = "buttonShowAllRouts";
-            this.buttonShowAllRouts.Size = new System.Drawing.Size(217, 30);
-            this.buttonShowAllRouts.TabIndex = 4;
-            this.buttonShowAllRouts.Text = "show all routs";
-            this.buttonShowAllRouts.UseVisualStyleBackColor = false;
-            this.buttonShowAllRouts.Click += new System.EventHandler(this.buttonShowAllRouts_Click);
             // 
             // Form1
             // 
