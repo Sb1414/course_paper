@@ -12,14 +12,18 @@ namespace coursWork
         {
             public Airport airport;
             public Node next;
+            public Node previous;
+
             public Node(Airport airport)
             {
                 this.airport = airport;
                 this.next = null;
+                this.previous = null;
             }
         }
 
         private Node head;
+        private Node tail;
         private int count;
 
         public void AddAirport(Airport airport)
@@ -28,15 +32,13 @@ namespace coursWork
             if (head == null)
             {
                 head = newNode;
+                tail = newNode;
             }
             else
             {
-                Node current = head;
-                while (current.next != null)
-                {
-                    current = current.next;
-                }
-                current.next = newNode;
+                newNode.previous = tail;
+                tail.next = newNode;
+                tail = newNode;
             }
             count++;
         }
@@ -44,23 +46,33 @@ namespace coursWork
         public void RemoveAirport(Airport airport)
         {
             Node current = head;
-            Node prev = null;
             while (current != null)
             {
                 if (current.airport == airport)
                 {
-                    if (prev == null)
+                    if (current.previous == null)
                     {
                         head = current.next;
+                        if (head != null)
+                        {
+                            head.previous = null;
+                        }
                     }
                     else
                     {
-                        prev.next = current.next;
+                        current.previous.next = current.next;
+                        if (current.next != null)
+                        {
+                            current.next.previous = current.previous;
+                        }
+                        else
+                        {
+                            tail = current.previous;
+                        }
                     }
                     count--;
                     break;
                 }
-                prev = current;
                 current = current.next;
             }
         }
@@ -68,9 +80,9 @@ namespace coursWork
         public void Clear()
         {
             head = null;
+            tail = null;
             count = 0;
         }
-
 
         public Airport GetAirportByIndex(int index)
         {
@@ -110,7 +122,6 @@ namespace coursWork
                 return GetAirportByIndex(index);
             }
         }
-
-
     }
+
 }
