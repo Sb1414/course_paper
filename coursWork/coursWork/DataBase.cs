@@ -16,24 +16,48 @@ namespace coursWork
         // List<Distance> distances = new List<Distance>();
         AirportList airports = new AirportList();
         DistanceList distances = new DistanceList();
+        private string fileDistances = "distance.txt";
+        private string fileAirports = "airport.txt";
+
+        public string GetFileDistances()
+        {
+            return fileDistances;
+        }
+
+        public string GetFileAirports()
+        {
+            return fileAirports;
+        }
+
+        public void SetFileDistances(string fileName)
+        {
+            this.fileDistances = fileName;
+        }
+
+        public void SetFileAirports(string fileName)
+        {
+            this.fileAirports = fileName;
+        }
 
         public string fullPath()
         {
+            if (fileAirports != "airport.txt" && fileDistances != "distance.txt")
+            {
+                return "";
+            }
             // нахожу относительный путь
             string fullPath = Directory.GetCurrentDirectory();
-            Console.WriteLine(fullPath);
 
             if (fullPath.Length > 10)
                 fullPath = fullPath.Remove(fullPath.Length - 10);
-            Console.WriteLine(fullPath);
-            return fullPath;
+            return fullPath + "\\";
         }
 
         public void AddAirport(string fullName, string name, string country)
         {
             addAllAirports();
 
-            string fileName = fullPath() + "\\airport.txt";
+            string fileName = fullPath() + fileAirports;
             bool c = true;
             for (int i = 0; i < airports.Count(); i++)
             {
@@ -45,7 +69,6 @@ namespace coursWork
             {
                 if (c)
                 {
-                    Console.WriteLine("записалось: " + fullName + " " + name + " " + country);
                     sw.WriteLine(fullName + " " + name + " " + country);
                 }
             }
@@ -54,7 +77,7 @@ namespace coursWork
 
         public void AddDistance(string name1, string name2, double interval)
         {
-            string fileName = fullPath() + "\\distance.txt";
+            string fileName = fullPath() + fileDistances;
 
             bool c = true;
             for (int i = 0; i < distances.Count(); i++)
@@ -68,14 +91,13 @@ namespace coursWork
                 if (c)
                 {
                     sw.WriteLine(name1 + " " + name2 + " " + interval);
-                    Console.WriteLine("записалось: " + name1 + " " + name2 + " " + interval);
                 }
             }
         }
 
         public void addAllAirports()
         {
-            string filePathAirport = fullPath() + "\\airport.txt";
+            string filePathAirport = fullPath() + fileAirports;
 
             using (StreamReader sr = new StreamReader(filePathAirport))
             {
@@ -99,7 +121,7 @@ namespace coursWork
 
         public void addAllDistances()
         {
-            string filePathAirport = fullPath() + "\\distance.txt";
+            string filePathAirport = fullPath() + fileDistances;
             using (StreamReader sr = new StreamReader(filePathAirport))
             {
                 string line;
@@ -135,7 +157,7 @@ namespace coursWork
         public bool search(string name)
         {
             bool f = false;
-            string filePath = fullPath() + "\\airport.txt";
+            string filePath = fullPath() + fileAirports;
 
             string[] fileLines = File.ReadAllLines(filePath);
 
@@ -155,13 +177,10 @@ namespace coursWork
             addAllDistances();
             for (int i = 0; i < distances.Count(); i++)
             {
-                Console.WriteLine( distances[i].GetName1() + " - " + distances[i].GetName2());
                 if (distances[i].GetName1() == name1 && distances[i].GetName2() == name2)
                 {
-                    Console.WriteLine("НАШЛОСЬ: ", distances[i].GetName1(), " - ", distances[i].GetName2());
                     return true;
                 }
-                Console.WriteLine("НЕТ: ", distances[i].GetName1(), " - ", distances[i].GetName2());
             }
             return false;
         }
