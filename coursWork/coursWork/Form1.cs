@@ -18,31 +18,21 @@ namespace coursWork
 {
     public partial class Form1 : Form
     {
-        // List<Airport> airport = new List<Airport>();
-        // List<Distance> distance = new List<Distance>();
         AirportList airportList = new AirportList();
         DistanceList distanceList = new DistanceList();
 
         FormAdd formAdd;
         FormShow formShow;
         DataBase dataBase = new DataBase();
-        public static string fullPath()
-        {
-            // нахожу относительный путь
-            string fullPath = Directory.GetCurrentDirectory();
-            Console.WriteLine(fullPath);
 
-            if (fullPath.Length > 10)
-                fullPath = fullPath.Remove(fullPath.Length - 10);
-            Console.WriteLine(fullPath);
-            return fullPath;
-        }
+        string filePathAirport;
+        string filePathDistance;
 
-        string filePathAirport = fullPath() + "\\airport.txt";
-        string filePathDistance = fullPath() + "\\distance.txt";
         public Form1()
         {
             InitializeComponent();
+            filePathAirport = dataBase.fullPath() + dataBase.GetFileAirports();
+            filePathDistance = dataBase.fullPath() + dataBase.GetFileDistances();
             AddItemsToComboBox();
         }
 
@@ -89,7 +79,7 @@ namespace coursWork
 
         public void addAllairportList()
         {
-            string filePathAirport = fullPath() + "\\airport.txt";
+            string filePathAirport = dataBase.fullPath() + dataBase.GetFileAirports();
 
             using (StreamReader sr = new StreamReader(filePathAirport))
             {
@@ -196,7 +186,6 @@ namespace coursWork
                                     if ((dataBase.AirportIn(fullName1, comboBox1.Text) && dataBase.AirportIn(fullName2, comboBox2.Text))
                                     || (dataBase.AirportIn(fullName2, comboBox1.Text) && dataBase.AirportIn(fullName1, comboBox2.Text)))
                                     {
-                                        Console.WriteLine("В дистанции: " + fullName1 + fullName2 + dist);
                                         distanceList.Add(new Distance(fullName1, fullName2, Convert.ToDouble(dist)));
                                         distanceList.Add(new Distance(fullName2, fullName1, Convert.ToDouble(dist)));
                                     }
