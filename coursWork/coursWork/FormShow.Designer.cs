@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panelUp = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.panelBack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelUp.SuspendLayout();
@@ -108,6 +109,7 @@
             // panelUp
             // 
             this.panelUp.BackColor = System.Drawing.Color.Transparent;
+            this.panelUp.Controls.Add(this.buttonDel);
             this.panelUp.Controls.Add(this.buttonClose);
             this.panelUp.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUp.Location = new System.Drawing.Point(0, 0);
@@ -132,6 +134,22 @@
             this.buttonClose.Text = "x";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // buttonDel
+            // 
+            this.buttonDel.BackColor = System.Drawing.Color.DarkCyan;
+            this.buttonDel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonDel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonDel.FlatAppearance.BorderSize = 0;
+            this.buttonDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDel.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonDel.Location = new System.Drawing.Point(436, 0);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(152, 30);
+            this.buttonDel.TabIndex = 6;
+            this.buttonDel.Text = "delete airport";
+            this.buttonDel.UseVisualStyleBackColor = false;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // FormShow
             // 
@@ -161,5 +179,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.Button buttonDel;
     }
 }

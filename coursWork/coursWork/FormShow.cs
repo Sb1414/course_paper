@@ -42,22 +42,12 @@ namespace coursWork
             this.Close();
         }
 
-        public static string fullPath()
-        {
-            // нахожу относительный путь
-            string fullPath = Directory.GetCurrentDirectory();
-
-            if (fullPath.Length > 10)
-                fullPath = fullPath.Remove(fullPath.Length - 10);
-            return fullPath;
-        }
-
-        List<Airport> airports = new List<Airport>();
-        string filePathAirport = fullPath() + "\\airport.txt";
+        DataBase db = new DataBase();
+        AirportList airports = new AirportList();
 
         public void addAllAirports()
         {
-            string filePathAirport = fullPath() + "\\airport.txt";
+            string filePathAirport = db.fullPath() + db.GetFileAirports();
 
             using (StreamReader sr = new StreamReader(filePathAirport))
             {
@@ -70,7 +60,7 @@ namespace coursWork
                         string fullName = words[0];
                         string name1 = words[1];
                         string countr = words[2];
-                        airports.Add(new Airport(fullName, name1, countr));
+                        airports.AddAirport(new Airport(fullName, name1, countr));
                     }
                 }
             }
@@ -83,7 +73,7 @@ namespace coursWork
             DataBase dataBase = new DataBase();
             dataBase.addAllAirports();
             addAllAirports();
-            if (airports.Count > 0)
+            if (airports.Count() > 0)
             {
                 int j = 0;
                 dataGridView1.RowCount = airports.Count();
@@ -94,6 +84,39 @@ namespace coursWork
                     dataGridView1[2, j].Value = airports[i].GetFullName();
                     j++;
                 }
+            }
+        }
+
+        private void buttonDel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow != null)
+                {
+                    string filePathAirport = db.fullPath() + db.GetFileAirports();
+                    int ind = dataGridView1.CurrentRow.Index;
+                    string name = dataGridView1.Rows[ind].Cells[0].Value.ToString();
+                    string nameis = "Действительно удалить аэропорт: " + name + "?";
+                    string delDist = name + " " + dataGridView1.Rows[ind].Cells[1].Value.ToString() + " " + dataGridView1.Rows[ind].Cells[2].Value.ToString();
+                    if (MessageBox.Show(name, "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (ind == dataGridView1.Rows.Count - 1)
+                        {
+                            dataGridView1.Rows.Insert(dataGridView1.CurrentRow.Index + 1);
+                        }
+                        dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                        var re = File.ReadAllLines(filePathAirport, Encoding.Default).Where(s => !s.Contains(delDist));
+                        File.WriteAllLines(filePathAirport, re, Encoding.Default);
+                    }
+                }
+                else
+                {
+                    throw new Exception("Не указано какую строку нужно удалить!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
     }
