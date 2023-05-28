@@ -38,23 +38,14 @@ namespace coursWork
         {
             this.Close();
         }
-        public static string fullPath()
-        {
-            // нахожу относительный путь
-            string fullPath = Directory.GetCurrentDirectory();
 
-            if (fullPath.Length > 10)
-                fullPath = fullPath.Remove(fullPath.Length - 10);
-            return fullPath;
-        }
-
-        List<Distance> distances = new List<Distance>();
-        string filePathDistance = fullPath() + "\\distance.txt";
+        DataBase db = new DataBase();
+        DistanceList distances = new DistanceList();
 
         public void addAllDistances()
         {
-            string filePathAirport = fullPath() + "\\distance.txt";
-            using (StreamReader sr = new StreamReader(filePathAirport))
+            string filePathDistances = db.fullPath() + db.GetFileDistances();
+            using (StreamReader sr = new StreamReader(filePathDistances))
             {
                 string line;
 
@@ -76,7 +67,7 @@ namespace coursWork
         public void show()
         {
             addAllDistances();
-            if (distances.Count > 0)
+            if (distances.Count() > 0)
             {
                 int j = 0;
                 dataGridView1.RowCount = distances.Count() + 1;
@@ -98,6 +89,7 @@ namespace coursWork
             {
                 if (dataGridView1.CurrentRow != null)
                 {
+                    string filePathDistances = db.fullPath() + db.GetFileDistances();
                     int ind = dataGridView1.CurrentRow.Index;
                     string name1 = dataGridView1.Rows[ind].Cells[0].Value.ToString();
                     string name2 = dataGridView1.Rows[ind].Cells[1].Value.ToString();
@@ -110,8 +102,8 @@ namespace coursWork
                             dataGridView1.Rows.Insert(dataGridView1.CurrentRow.Index + 1);
                         }
                         dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
-                        var re = File.ReadAllLines(filePathDistance, Encoding.Default).Where(s => !s.Contains(delDist));
-                        File.WriteAllLines(filePathDistance, re, Encoding.Default);
+                        var re = File.ReadAllLines(filePathDistances, Encoding.Default).Where(s => !s.Contains(delDist));
+                        File.WriteAllLines(filePathDistances, re, Encoding.Default);
                     }
                 }
                 else
