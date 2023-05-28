@@ -9,5 +9,5 @@ Koltsovo Kazan1 717
 Hrabrovo Kazan1 2100
 Pulcovo Hrabrovo 961
 Pulcovo Koltsovo 2229
-
 Coal Vityazevo 7339,1
+Vityazevo Kazan1 2300,2

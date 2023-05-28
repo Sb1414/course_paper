@@ -45,6 +45,7 @@
             this.buttonSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panelUp = new System.Windows.Forms.Panel();
+            this.buttonEditBDFile = new System.Windows.Forms.Button();
             this.buttonShowAllRouts = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonShowAllAir = new System.Windows.Forms.Button();
@@ -226,6 +227,7 @@
             // panelUp
             // 
             this.panelUp.BackColor = System.Drawing.Color.Transparent;
+            this.panelUp.Controls.Add(this.buttonEditBDFile);
             this.panelUp.Controls.Add(this.buttonShowAllRouts);
             this.panelUp.Controls.Add(this.buttonAdd);
             this.panelUp.Controls.Add(this.buttonShowAllAir);
@@ -237,6 +239,22 @@
             this.panelUp.TabIndex = 0;
             this.panelUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelUp_MouseDown);
             this.panelUp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelUp_MouseMove);
+            // 
+            // buttonEditBDFile
+            // 
+            this.buttonEditBDFile.BackColor = System.Drawing.Color.DarkCyan;
+            this.buttonEditBDFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonEditBDFile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonEditBDFile.FlatAppearance.BorderSize = 0;
+            this.buttonEditBDFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEditBDFile.Font = new System.Drawing.Font("Arial Black", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonEditBDFile.Location = new System.Drawing.Point(246, 0);
+            this.buttonEditBDFile.Name = "buttonEditBDFile";
+            this.buttonEditBDFile.Size = new System.Drawing.Size(261, 30);
+            this.buttonEditBDFile.TabIndex = 5;
+            this.buttonEditBDFile.Text = "edit the download file";
+            this.buttonEditBDFile.UseVisualStyleBackColor = false;
+            this.buttonEditBDFile.Click += new System.EventHandler(this.buttonEditBDFile_Click);
             // 
             // buttonShowAllRouts
             // 
@@ -347,6 +365,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonShowAllRouts;
+        private System.Windows.Forms.Button buttonEditBDFile;
     }
 }
 

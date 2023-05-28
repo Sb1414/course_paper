@@ -277,5 +277,26 @@ namespace coursWork
             ShowRoutes showRoutes = new ShowRoutes();
             showRoutes.Show();
         }
+
+        private void buttonEditBDFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialogAir = new OpenFileDialog();
+            openFileDialogAir.Filter = "Текстовые файлы (*.txt)|*.txt";
+            MessageBox.Show("Выберите файл с аэропортами");
+            if (openFileDialogAir.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialogAir.FileName;
+                dataBase.SetFileAirports(filePath);
+            }
+
+            OpenFileDialog openFileDialogDist = new OpenFileDialog();
+            openFileDialogDist.Filter = "Текстовые файлы (*.txt)|*.txt";
+            MessageBox.Show("Выберите файл с дистанциями");
+            if (openFileDialogDist.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialogDist.FileName;
+                dataBase.SetFileDistances(filePath);
+            }
+        }
     }
 }
